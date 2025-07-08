@@ -21,7 +21,6 @@ const navLinks = [
   { name: "All Policies", path: "/all-policies" },
   { name: "Agents", path: "/agents" },
   { name: "FAQs", path: "/faqs" },
-  { name: "About Us", path: "/about-us" },
 ];
 
 const userNavLinks = [
@@ -59,7 +58,7 @@ const Navbar = () => {
     try {
       setIsUserMenuOpen(false);
       await signOutUser();
-      navigate("/all-articles");
+      navigate("/");
       toast.success("Logout successful.");
     } catch (error) {
       console.log(error);
