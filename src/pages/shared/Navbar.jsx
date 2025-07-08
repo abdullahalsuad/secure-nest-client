@@ -18,12 +18,28 @@ import { ThemeContext } from "../../context";
 // Centralized Nav Config
 const navLinks = [
   { name: "Home", path: "/" },
-
+  { name: "All Policies", path: "/all-policies" },
+  { name: "Agents", path: "/agents" },
+  { name: "FAQs", path: "/faqs" },
   { name: "About Us", path: "/about-us" },
 ];
 
 const userNavLinks = [
-  { name: "My Profile", path: "/profile", icon: <CgProfile size={25} /> },
+  {
+    name: "My Dashboard",
+    path: "/customer-dashboard",
+    icon: <CgProfile size={25} />,
+  },
+  {
+    name: "Admin Dashboard",
+    path: "/admin-dashboard",
+    icon: <CgProfile size={25} />,
+  },
+  {
+    name: "Agent Dashboard",
+    path: "/agent-dashboard",
+    icon: <CgProfile size={25} />,
+  },
 ];
 
 const Navbar = () => {
@@ -56,13 +72,14 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center justify-center">
-            <BookOpen className="h-8 w-8 mr-2" />
-            <NavLink
-              to="/"
-              className="text-2xl font-bold text-blue-400 tracking-tight"
-            >
-              Your <span className="text-teal-400">Name</span>
+          <div className="flex items-center justify-center mt-4">
+            <NavLink to="/" className="text-2xl font-bold  tracking-tight">
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="w-10 h-10 bg-gradient-to-r from-teal-700 to-teal-900 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-xl">N</span>
+                </div>
+                <span className="text-2xl font-bold">Secure Nest</span>
+              </div>
             </NavLink>
           </div>
 
@@ -74,8 +91,8 @@ const Navbar = () => {
                 to={link.path}
                 className={({ isActive }) =>
                   isActive
-                    ? "text-base font-medium text-teal-300"
-                    : "text-base font-medium text-gray-900 dark:text-gray-300 hover:text-teal-400 transition"
+                    ? "text-base font-medium text-teal-900 dark:text-teal-300"
+                    : "text-base font-medium text-gray-900 dark:text-gray-300 hover:text-teal-700 dark:hover:text-teal-500 transition"
                 }
               >
                 {link.name}

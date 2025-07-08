@@ -1,3 +1,4 @@
+import { TwitchIcon } from "lucide-react";
 import React from "react";
 import {
   FiFacebook,
@@ -5,85 +6,133 @@ import {
   FiInstagram,
   FiGithub,
   FiMail,
+  FiLinkedin,
 } from "react-icons/fi";
 import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#00224D] text-white pt-10 pb-6 dark:bg-gray-800">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {/* Brand */}
-          <div>
-            <h3 className="text-2xl font-bold mb-3">
-              <span className="text-white dark:text-blue-400 ">Your</span>{" "}
-              <span className=" text-teal-400 dark:text-teal-400">Name</span>
-            </h3>
-            <p className="text-gray-300 text-sm dark:text-gray-400">
-              Connecting people through shared passions. Build your tribe today.
+    <footer className="bg-gray-900 dark:bg-gray-950 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div className="col-span-1 md:col-span-2">
+            <div className="flex items-center space-x-2 mb-4">
+              <div className="w-10 h-10 bg-gradient-to-r from-teal-700 to-teal-900 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xl">N</span>
+              </div>
+              <span className="text-2xl font-bold">Secure Nest</span>
+            </div>
+            <p className="text-gray-400 mb-4 max-w-md">
+              Secure your tomorrow today with our comprehensive life insurance
+              solutions. We bring transparency and trust to the insurance
+              industry.
             </p>
-            <div className="flex space-x-4 mt-4 ">
-              <a href="#" className="hover:text-teal-400 transition">
-                <FiFacebook size={20} />
-              </a>
-              <a href="#" className="hover:text-teal-400 transition">
-                <FiTwitter size={20} />
-              </a>
-              <a href="#" className="hover:text-teal-400 transition">
-                <FiInstagram size={20} />
-              </a>
-              <a href="#" className="hover:text-teal-400 transition">
-                <FiGithub size={20} />
-              </a>
-              <a href="#" className="hover:text-teal-400 transition">
-                <FiMail size={20} />
-              </a>
+            <div className="flex space-x-4 cursor-pointer">
+              <span className="bg-gradient-to-l from-teal-500 to-teal-600 rounded-full p-2">
+                <FiFacebook />
+              </span>
+
+              <span className="bg-gradient-to-l from-teal-500 to-teal-600 rounded-full p-2 cursor-pointer">
+                <FiTwitter />
+              </span>
+              <span className="bg-gradient-to-l from-teal-500 to-teal-600 rounded-full p-2 cursor-pointer">
+                <FiLinkedin />
+              </span>
             </div>
           </div>
 
-          {/* Links */}
+          {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-gray-300 dark:text-gray-400">
+            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
               <li>
-                <Link to={"/"} className="hover:text-teal-400 transition">
-                  Home
-                </Link>
+                <button className="text-gray-400 hover:text-white transition-colors">
+                  All Policies
+                </button>
               </li>
-
               <li>
-                <a href="#" className="hover:text-teal-400 transition">
-                  Terms & Conditions
-                </a>
+                <button className="text-gray-400 hover:text-white transition-colors">
+                  Our Agents
+                </button>
+              </li>
+              <li>
+                <button className="text-gray-400 hover:text-white transition-colors">
+                  Get Quote
+                </button>
+              </li>
+              <li>
+                <button className="text-gray-400 hover:text-white transition-colors">
+                  FAQs
+                </button>
               </li>
             </ul>
           </div>
 
-          {/* Newsletter */}
+          {/* Support */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Stay Updated</h4>
-            <p className="text-gray-300 text-sm mb-4 dark:text-gray-400">
-              Get the latest hobby group updates straight to your inbox.
-            </p>
-            <form className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="px-4 py-2 bg-[#1E2A3A] border border-teal-400 rounded-md focus:outline-none w-full dark:bg-gray-700 "
-              />
-              <button
-                type="submit"
-                className="px-4 py-2 bg-teal-400 hover:bg-[#1f5490] rounded-md transition text-white cursor-pointer dark:hover:bg-[#1f5490]"
-              >
-                Subscribe
-              </button>
-            </form>
+            <h3 className="text-lg font-semibold mb-4">Support</h3>
+            <ul className="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Contact Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Help Center
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Terms of Service
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-10 pt-6 border-t border-[#3C424B] text-center text-sm text-gray-400 dark:border-gray-600">
-          &copy; {new Date().getFullYear()} Brain Wave . All rights reserved.
+        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-sm">
+            © 2024 Secure Nest. All rights reserved.
+          </p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <a
+              href="#"
+              className="text-gray-400 hover:text-white text-sm transition-colors"
+            >
+              Privacy
+            </a>
+            <a
+              href="#"
+              className="text-gray-400 hover:text-white text-sm transition-colors"
+            >
+              Terms
+            </a>
+            <a
+              href="#"
+              className="text-gray-400 hover:text-white text-sm transition-colors"
+            >
+              Cookies
+            </a>
+          </div>
         </div>
       </div>
     </footer>
