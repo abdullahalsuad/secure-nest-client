@@ -12,7 +12,6 @@ import {
   IoIosLogOut,
 } from "react-icons/io";
 import { CiDark, CiLight } from "react-icons/ci";
-import { BookOpen } from "lucide-react";
 import { ThemeContext } from "../../context";
 
 // Centralized Nav Config

@@ -12,12 +12,12 @@ import FormHeading from "../../components/auth/FormHeading";
 
 const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
-
   const location = useLocation();
   const navigate = useNavigate();
 
   const axiosInstance = useAxios();
-  const { createUser, setUser, updateUser } = use(AuthContext);
+  const { createUser, setUser, updateUser, signInWithGoogle } =
+    use(AuthContext);
 
   const {
     register,
@@ -32,32 +32,33 @@ const RegisterPage = () => {
   }, []);
 
   const handleRegister = async (data) => {
-    console.log(data);
-
     const email = data.email;
     const name = data.fullName;
     const password = data.password;
+    const profileImg = data.photoURL;
 
     // Sign Up
     try {
+      // creating user on firebase
       const result = await createUser(email, password);
-
-      //   const userInfo = {
-      //     userName: name,
-      //     userEmail: email,
-      // firebase id
-      //     userId: result.user.uid,
-      //   };
-
-      // update userinfo in the database
-
-      //   const userRes = await axiosInstance.post("/add-users", userInfo);
 
       await updateUser({
         displayName: name,
+        photoURL: profileImg,
       });
 
-      setUser({ ...result.user, displayName: name });
+      const userInfo = {
+        userName: name,
+        userEmail: email,
+        userProfile: profileImg,
+        //firebase id
+        userId: result.user.uid,
+      };
+
+      //   update userinfo in the database
+      await axiosInstance.post("/add-user", userInfo);
+
+      setUser({ ...result.user, displayName: name, photoURL: profileImg });
 
       toast.success("Account Create successful");
       reset();
@@ -83,6 +84,49 @@ const RegisterPage = () => {
       setIsLoading(false);
     }
   };
+
+  // Sign in with Google
+  const handleGoogleSignIn = async () => {
+    setIsLoading(true);
+    try {
+      const result = await signInWithGoogle();
+
+      const userInfo = {
+        userName: result.user.displayName,
+        userEmail: result.user.email,
+        userProfile: result.user.photoURL,
+        //firebase id
+        userId: result.user.uid,
+      };
+
+      try {
+        await axiosInstance.post("/add-user", userInfo);
+      } catch (err) {
+        if (err.response?.status !== 409) {
+          throw err;
+        }
+      }
+
+      toast.success("Login successful. Welcome back!");
+      navigate(location?.state ? location.state : "/");
+    } catch (error) {
+      // Map Firebase error codes to friendly messages
+      const errorMessages = {
+        "auth/popup-closed-by-user": "Popup closed. Please try again.",
+        "auth/cancelled-popup-request":
+          "Another popup was opened. Please try again.",
+        "auth/invalid-credential": "Failed to authenticate with Google.",
+        "auth/internal-error": "An internal error occurred. Try again later.",
+        default: "Something went wrong. Please try again.",
+      };
+
+      const errorMessage = errorMessages[error.code] || errorMessages.default;
+      toast.error(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 space-y-6">
       {/* Form heading */}
@@ -101,7 +145,7 @@ const RegisterPage = () => {
       <Divider />
 
       {/* Social Login Buttons */}
-      <SocialLoginButtons />
+      <SocialLoginButtons handleGoogleSignIn={handleGoogleSignIn} />
 
       {/* Sign Up Link */}
       <CustomLinks

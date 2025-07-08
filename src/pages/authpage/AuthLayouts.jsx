@@ -22,19 +22,6 @@ const AuthLayout = () => {
       <div className="flex flex-col items-center justify-center pb-10">
         <Outlet />
       </div>
-
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
     </div>
   );
 };

@@ -20,19 +20,6 @@ function App() {
         <Footer />
       </footer>
 
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={true}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-
       <ReactQueryDevtools initialIsOpen={false} />
     </div>
   );
