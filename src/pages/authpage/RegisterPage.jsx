@@ -9,6 +9,7 @@ import Divider from "../../components/auth/Divider";
 import RegisterForm from "../../components/auth/RegisterForm";
 import CustomLinks from "../../components/auth/CustomLinks";
 import FormHeading from "../../components/auth/FormHeading";
+import useImageUpload from "../../hooks/useImageUpload";
 
 const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +27,9 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm();
 
+  // Use the image upload hook
+  const { images, handleImageUpload, uploading } = useImageUpload();
+
   // scroll to top
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,7 +39,8 @@ const RegisterPage = () => {
     const email = data.email;
     const name = data.fullName;
     const password = data.password;
-    const profileImg = data.photoURL;
+
+    const profileImg = images;
 
     // Sign Up
     try {
@@ -139,6 +144,8 @@ const RegisterPage = () => {
         register={register}
         errors={errors}
         handleSubmit={handleSubmit}
+        handleImageUpload={handleImageUpload}
+        uploading={uploading}
       />
 
       {/* Divider */}

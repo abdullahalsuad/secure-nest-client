@@ -13,6 +13,7 @@ import {
 } from "react-icons/io";
 import { CiDark, CiLight } from "react-icons/ci";
 import { ThemeContext } from "../../context";
+import { Handshake, LayoutDashboard, UserRoundPen } from "lucide-react";
 
 // Centralized Nav Config
 const navLinks = [
@@ -25,18 +26,18 @@ const navLinks = [
 const userNavLinks = [
   {
     name: "My Dashboard",
-    path: "/customer-dashboard",
-    icon: <CgProfile size={25} />,
+    path: "/my-dashboard",
+    icon: <UserRoundPen size={25} />,
   },
   {
     name: "Admin Dashboard",
-    path: "/admin-dashboard",
-    icon: <CgProfile size={25} />,
+    path: "/admin",
+    icon: <LayoutDashboard size={25} />,
   },
   {
     name: "Agent Dashboard",
-    path: "/agent-dashboard",
-    icon: <CgProfile size={25} />,
+    path: "/agent",
+    icon: <Handshake size={25} />,
   },
 ];
 

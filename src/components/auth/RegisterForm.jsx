@@ -6,8 +6,6 @@ import {
   FaLock,
   FaEye,
   FaEyeSlash,
-  FaFacebook,
-  FaImage,
 } from "react-icons/fa";
 
 const RegisterForm = ({
@@ -16,6 +14,8 @@ const RegisterForm = ({
   register,
   errors,
   isLoading,
+  handleImageUpload,
+  uploading,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
@@ -72,6 +72,42 @@ const RegisterForm = ({
         )}
       </div>
 
+      {/* Profile Picture */}
+      <div className="space-y-2">
+        <label
+          htmlFor="profilePicture"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
+          Profile Picture
+        </label>
+        <div className="relative">
+          <input
+            required
+            type="file"
+            id="profileImg"
+            accept="image/*"
+            onChange={(e) => handleImageUpload(e)}
+            disabled={uploading}
+            className={`
+              block w-full text-sm text-gray-500 dark:text-gray-300 file:mr-4 file:py-4 file:px-4
+              file:rounded-md file:border-0
+              file:text-sm file:font-semibold
+              file:bg-teal-500 file:text-white
+              hover:file:bg-teal-600
+              dark:file:bg-teal-600 dark:hover:file:bg-teal-700
+              border border-gray-300 dark:border-gray-600 rounded-lg
+              bg-white dark:bg-gray-700
+              focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500
+              transition-colors
+              ${uploading ? "cursor-not-allowed opacity-60" : "cursor-pointer"}
+            `}
+          />
+        </div>
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+          PNG, JPG, GIF up to 5MB
+        </p>
+      </div>
+
       {/* Password */}
       <div className="space-y-2">
         <label
@@ -124,24 +160,6 @@ const RegisterForm = ({
       </div>
 
       {/* Profile Picture URL */}
-      <div className="space-y-2">
-        <label
-          htmlFor="photoURL"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-        >
-          Profile Picture URL (optional)
-        </label>
-        <div className="relative">
-          <FaImage className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4" />
-          <input
-            {...register("photoURL")}
-            id="photoURL"
-            type="url"
-            placeholder="https://example.com/profile.jpg "
-            className="w-full pl-10 pr-4  border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:outline-none bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg transition-colors px-4 py-3"
-          />
-        </div>
-      </div>
 
       {/* Submit Button */}
       <button
