@@ -49,10 +49,14 @@ const UpdateProfile = () => {
 
     try {
       // send to db
-      await axiosInstance.patch(`/update-profile/${user.uid}`, {
-        userName: newDisplayName,
-        userProfile: newPhotoURL,
-      });
+      await axiosInstance.patch(
+        `/update-profile/${user.uid}`,
+        {
+          userName: newDisplayName,
+          userProfile: newPhotoURL,
+        },
+        { withCredentials: true }
+      );
 
       // for firebase
       await updateUser({

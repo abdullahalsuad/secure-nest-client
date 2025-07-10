@@ -1,12 +1,18 @@
 import React from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { FiEdit, FiEye, FiMail } from "react-icons/fi";
+import { SquarePen, Trash } from "lucide-react";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
 
   // Fetch all users
-  const { data: users = [], isLoading } = useQuery({
+  const {
+    data: users = [],
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["all-users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users", { withCredentials: true });
@@ -16,7 +22,121 @@ const ManageUsers = () => {
 
   console.log(users);
 
-  return <div>Total :- {users.length}</div>;
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
+
+  if (error) {
+    return (
+      <div className="text-center text-red-500 dark:text-red-400 py-10 dark:bg-gray-900">
+        Error loading users: {error.message}
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-6 space-y-6  min-h-screen">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-4"></div>
+
+      <div className="rounded-md  shadow-lg">
+        <div className="overflow-x-auto">
+          {users.length === 0 ? (
+            <div className="text-center py-6 text-gray-500 dark:text-gray-400">
+              No users found.
+            </div>
+          ) : (
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700  rounded-md bg-white dark:bg-gray-800  shadow-lg">
+              <thead className="bg-gray-900 dark:bg-gray-700 rounded-md ">
+                <tr>
+                  <th className="px-6 py-3 text-[15px] font-bold  text-white text-center dark:text-gray-300 uppercase tracking-wider">
+                    Customer
+                  </th>
+                  <th className="px-6 py-3 text-[15px] font-bold  text-white text-center dark:text-gray-300 uppercase tracking-wider">
+                    Email
+                  </th>
+                  <th className="px-6 py-3 text-[15px] font-bold  text-white text-center dark:text-gray-300 uppercase tracking-wider">
+                    Role
+                  </th>
+
+                  <th className="px-6 py-3 text-[15px] font-bold  text-white text-center dark:text-gray-300 uppercase tracking-wider">
+                    Join Date
+                  </th>
+
+                  <th className="px-6 py-3 text-[15px] font-bold  text-white text-center dark:text-gray-300 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                {users.map((user) => (
+                  <tr key={user.id} className="transition-colors duration-150">
+                    <td className="px-6 py-4 text-center">
+                      <div className="flex items-center">
+                        <div className="w-10 h-10   rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                          <img
+                            src={user.userProfile}
+                            alt=""
+                            className="w-10 h-10   rounded-full"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <div className="text-sm font-medium text-gray-900 dark:text-white">
+                            {user.userName}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
+                      {user.userEmail}
+                    </td>
+                    <td className="px-6 py-4 text-center text-sm">
+                      {user.userRole === "Admin" ? (
+                        <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-teal-100 text-teal-800 dark:bg-teal-800 dark:text-white">
+                          ADMIN
+                        </span>
+                      ) : user.userRole === "Agent" ? (
+                        <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-white">
+                          AGENT
+                        </span>
+                      ) : (
+                        <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-800 dark:text-white">
+                          CUSTOMER
+                        </span>
+                      )}
+                    </td>
+
+                    <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
+                      {new Date(user.createdAt).toLocaleString()}
+                    </td>
+
+                    <td className="px-6 py-4 text-sm font-medium flex justify-center gap-4">
+                      <div className=" text-center text-sm">
+                        <select
+                          //   value={user.userRole}
+                          className="px-4 py-1.5 rounded-md text-[12px] font-semibold cursor-pointer transition-all duration-200 border border-gray-400"
+                        >
+                          <option value="Customer">Customer</option>
+                          <option value="Agent">Agent</option>
+                          <option value="Admin">Admin</option>
+                        </select>
+                      </div>
+                      <button className="flex items-center gap-1 text-blue-600 hover:text-white hover:bg-blue-600 dark:hover:bg-blue-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md">
+                        <FiEye size={16} /> View
+                      </button>
+
+                      <button className="flex items-center gap-1 text-red-600 hover:text-white hover:bg-red-600 dark:hover:bg-red-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md">
+                        <Trash size={16} /> Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ManageUsers;

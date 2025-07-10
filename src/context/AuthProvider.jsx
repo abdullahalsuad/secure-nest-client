@@ -10,7 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase";
-import axios from "axios";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 // Creating a context
 export const AuthContext = createContext(null);
@@ -19,6 +19,8 @@ const AuthProvider = ({ children }) => {
   let [user, setUser] = useState(null);
   let [loading, setLoading] = useState(true);
   const provider = new GoogleAuthProvider();
+
+  const axiosSecure = useAxiosSecure();
 
   // User create
   let createUser = (email, password) => {
@@ -33,11 +35,7 @@ const AuthProvider = ({ children }) => {
   // User signUp
   let signOutUser = async () => {
     // Clear JWT cookie via backend
-    await axios.post(
-      "http://localhost:3000/api/v1/logout",
-      {},
-      { withCredentials: true }
-    );
+    await axiosSecure.post("/logout", {}, { withCredentials: true });
 
     return signOut(auth);
   };
@@ -59,8 +57,8 @@ const AuthProvider = ({ children }) => {
 
       if (currentUser?.email) {
         try {
-          const response = await axios.post(
-            "http://localhost:3000/api/v1/jwt",
+          const response = await axiosSecure.post(
+            "/jwt",
             { email: currentUser.email },
             { withCredentials: true }
           );
@@ -75,6 +73,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unSubscribe();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const userInfo = {

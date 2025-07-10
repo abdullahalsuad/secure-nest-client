@@ -3,6 +3,7 @@ import AllPoliciesPage from "../pages/all-policies/AllPoliciesPage";
 import AgentsPage from "../pages/agents/AgentsPage";
 import HomePages from "../pages/home/HomePages";
 import FaqsPage from "../pages/FAQs/FaqsPage";
+import Forbidden from "../components/forbidden/Forbidden";
 
 const publicRoutes = {
   path: "/",
@@ -13,16 +14,20 @@ const publicRoutes = {
       element: <HomePages />,
     },
     {
-      path: "all-policies",
+      path: "/all-policies",
       element: <AllPoliciesPage />,
     },
     {
-      path: "agents",
+      path: "/agents",
       element: <AgentsPage />,
     },
     {
-      path: "faqs",
+      path: "/faqs",
       element: <FaqsPage />,
+    },
+    {
+      path: "/forbidden",
+      element: <Forbidden />,
     },
   ],
 };

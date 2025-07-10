@@ -7,6 +7,7 @@ import { IoIosArrowDown, IoIosArrowUp, IoIosLogOut } from "react-icons/io";
 import { CiDark, CiLight } from "react-icons/ci";
 import { ThemeContext } from "../../context";
 import { Handshake, LayoutDashboard, UserRoundPen } from "lucide-react";
+import useUserRole from "../../hooks/useUserRole";
 
 // Centralized Nav Config
 const navLinks = [
@@ -16,23 +17,50 @@ const navLinks = [
   { name: "FAQs", path: "/faqs" },
 ];
 
-const userNavLinks = [
-  {
-    name: "My Dashboard",
-    path: "/my-dashboard",
-    icon: <UserRoundPen size={25} />,
-  },
-  {
-    name: "Admin Dashboard",
-    path: "/admin",
-    icon: <LayoutDashboard size={25} />,
-  },
-  {
-    name: "Agent Dashboard",
-    path: "/agent",
-    icon: <Handshake size={25} />,
-  },
-];
+const getUserNavLinks = (role) => {
+  if (role === "Admin") {
+    return [
+      {
+        name: "My Dashboard",
+        path: "/my-dashboard",
+        icon: <UserRoundPen size={25} />,
+      },
+      {
+        name: "Admin Dashboard",
+        path: "/admin",
+        icon: <LayoutDashboard size={25} />,
+      },
+      {
+        name: "Agent Dashboard",
+        path: "/agent",
+        icon: <Handshake size={25} />,
+      },
+    ];
+  } else if (role === "Agent") {
+    return [
+      {
+        name: "Agent Dashboard",
+        path: "/agent",
+        icon: <Handshake size={25} />,
+      },
+      {
+        name: "My Dashboard",
+        path: "/my-dashboard",
+        icon: <UserRoundPen size={25} />,
+      },
+    ];
+  } else if (role === "Customer") {
+    return [
+      {
+        name: "My Dashboard",
+        path: "/my-dashboard",
+        icon: <UserRoundPen size={25} />,
+      },
+    ];
+  } else {
+    return [];
+  }
+};
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,13 +68,12 @@ const Navbar = () => {
   const { user, signOutUser, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const { theme, toggleTheme } = use(ThemeContext);
+  const { userRole, roleLoading } = useUserRole();
 
-  // mobile menu
-  const handleLinkClick = () => {
-    setIsMenuOpen(false);
-  };
+  const filteredUserNavLinks = getUserNavLinks(userRole);
 
-  // handling logout
+  const handleLinkClick = () => setIsMenuOpen(false);
+
   const handleSignOut = async () => {
     try {
       setIsUserMenuOpen(false);
@@ -163,22 +190,23 @@ const Navbar = () => {
                       <hr className="border-t border-gray-200 dark:border-gray-700 my-1" />
 
                       {/* Profile links */}
-                      {userNavLinks.map((link, index) => (
-                        <NavLink
-                          key={index}
-                          to={link.path}
-                          className={({ isActive }) =>
-                            isActive
-                              ? "block px-4 py-3 text-sm font-medium text-teal-400 hover:bg-teal-70 dark:hover:bg-gray-700"
-                              : "block px-4 py-3 text-sm font-medium text-gray-900 dark:text-gray-300 hover:bg-teal-70 dark:hover:bg-gray-700 hover:text-teal-400"
-                          }
-                          onClick={() => setIsUserMenuOpen(false)}
-                        >
-                          <span className="flex items-center gap-2">
-                            {link.icon} {link.name}
-                          </span>
-                        </NavLink>
-                      ))}
+                      {!roleLoading &&
+                        filteredUserNavLinks.map((link, index) => (
+                          <NavLink
+                            key={index}
+                            to={link.path}
+                            className={({ isActive }) =>
+                              isActive
+                                ? "block px-4 py-3 text-sm font-medium text-teal-400 hover:bg-teal-70 dark:hover:bg-gray-700"
+                                : "block px-4 py-3 text-sm font-medium text-gray-900 dark:text-gray-300 hover:bg-teal-70 dark:hover:bg-gray-700 hover:text-teal-400"
+                            }
+                            onClick={() => setIsUserMenuOpen(false)}
+                          >
+                            <span className="flex items-center gap-2">
+                              {link.icon} {link.name}
+                            </span>
+                          </NavLink>
+                        ))}
 
                       <hr className="border-t border-gray-200 dark:border-gray-700 my-1" />
                       <button
@@ -258,22 +286,23 @@ const Navbar = () => {
             <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
               {user ? (
                 <>
-                  {userNavLinks.map((link, index) => (
-                    <NavLink
-                      key={index}
-                      to={link.path}
-                      className={({ isActive }) =>
-                        isActive
-                          ? "block py-2 text-sm font-medium text-teal-400 hover:bg-teal-70 dark:hover:bg-gray-700"
-                          : "block py-2 text-sm font-medium text-gray-900 dark:text-gray-300 hover:bg-teal-70 dark:hover:bg-gray-700 hover:text-teal-400"
-                      }
-                      onClick={handleLinkClick}
-                    >
-                      <span className="flex items-center gap-2">
-                        {link.icon} {link.name}
-                      </span>
-                    </NavLink>
-                  ))}
+                  {!roleLoading &&
+                    filteredUserNavLinks.map((link, index) => (
+                      <NavLink
+                        key={index}
+                        to={link.path}
+                        className={({ isActive }) =>
+                          isActive
+                            ? "block py-2 text-sm font-medium text-teal-400 hover:bg-teal-70 dark:hover:bg-gray-700"
+                            : "block py-2 text-sm font-medium text-gray-900 dark:text-gray-300 hover:bg-teal-70 dark:hover:bg-gray-700 hover:text-teal-400"
+                        }
+                        onClick={handleLinkClick}
+                      >
+                        <span className="flex items-center gap-2">
+                          {link.icon} {link.name}
+                        </span>
+                      </NavLink>
+                    ))}
 
                   <button className="flex items-center space-x-3 focus:outline-none cursor-pointer my-4 w-full">
                     <img

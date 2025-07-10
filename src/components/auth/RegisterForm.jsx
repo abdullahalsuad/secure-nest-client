@@ -164,9 +164,17 @@ const RegisterForm = ({
       {/* Submit Button */}
       <button
         type="submit"
-        className="w-full py-3 mt-2 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 dark:focus:ring-offset-gray-800 cursor-pointer"
+        disabled={uploading}
+        aria-disabled={uploading}
+        className={`w-full py-3 mt-2 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 dark:focus:ring-offset-gray-800
+    ${uploading ? "cursor-not-allowed opacity-60" : "cursor-pointer"}
+  `}
       >
-        {isLoading ? "loading....." : "Create Account"}
+        {uploading
+          ? "Wait Img Uploading..."
+          : isLoading
+          ? "Loading..."
+          : "Create Account"}
       </button>
     </form>
   );
