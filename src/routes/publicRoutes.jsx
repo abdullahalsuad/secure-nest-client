@@ -1,6 +1,8 @@
 import App from "../App";
-import Home from "../pages/Home";
-import About from "../pages/About";
+import AllPoliciesPage from "../pages/all-policies/AllPoliciesPage";
+import AgentsPage from "../pages/agents/AgentsPage";
+import HomePages from "../pages/home/HomePages";
+import FaqsPage from "../pages/FAQs/FaqsPage";
 
 const publicRoutes = {
   path: "/",
@@ -8,11 +10,19 @@ const publicRoutes = {
   children: [
     {
       index: true,
-      element: <Home />,
+      element: <HomePages />,
     },
     {
-      path: "about",
-      element: <About />,
+      path: "all-policies",
+      element: <AllPoliciesPage />,
+    },
+    {
+      path: "agents",
+      element: <AgentsPage />,
+    },
+    {
+      path: "faqs",
+      element: <FaqsPage />,
     },
   ],
 };

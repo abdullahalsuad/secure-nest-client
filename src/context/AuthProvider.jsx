@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase";
+import axios from "axios";
 
 // Creating a context
 export const AuthContext = createContext(null);
@@ -30,7 +31,14 @@ const AuthProvider = ({ children }) => {
   };
 
   // User signUp
-  let signOutUser = () => {
+  let signOutUser = async () => {
+    // Clear JWT cookie via backend
+    await axios.post(
+      "http://localhost:3000/api/v1/logout",
+      {},
+      { withCredentials: true }
+    );
+
     return signOut(auth);
   };
 
@@ -45,10 +53,23 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    let unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+    let unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-
       setLoading(false);
+
+      if (currentUser?.email) {
+        try {
+          const response = await axios.post(
+            "http://localhost:3000/api/v1/jwt",
+            { email: currentUser.email },
+            { withCredentials: true }
+          );
+
+          console.log(response.data);
+        } catch (error) {
+          console.error("Failed to send email to /jwt:", error);
+        }
+      }
     });
 
     return () => {

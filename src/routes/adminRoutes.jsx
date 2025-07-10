@@ -1,6 +1,7 @@
 import AdminLayout from "../dashboard/admin/AdminLayout";
 import AdminOverview from "../dashboard/admin/AdminOverview";
 import UpdateProfile from "../components/dashboard/UpdateProfile";
+import ManageUsers from "../dashboard/admin/ManageUsers";
 
 const adminRoutes = {
   path: "/admin",
@@ -13,6 +14,10 @@ const adminRoutes = {
     {
       path: "update-profile",
       element: <UpdateProfile />,
+    },
+    {
+      path: "users",
+      element: <ManageUsers />,
     },
   ],
 };

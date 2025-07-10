@@ -10,6 +10,8 @@ import {
   UserCog,
   HeartHandshake,
   LayoutDashboard,
+  ScrollText,
+  SquarePen,
 } from "lucide-react";
 
 const AdminLayout = () => {
@@ -20,6 +22,8 @@ const AdminLayout = () => {
     { name: "Manage Agents", path: "agents", icon: UserCog },
     { name: "Manage Policies", path: "policies", icon: HeartHandshake },
     { name: "Manage Transactions", path: "transactions", icon: DollarSign },
+    { name: "Manage Blogs", path: "manage-blogs", icon: ScrollText },
+    { name: "Blog Posts", path: "blog-posts", icon: SquarePen },
   ];
 
   return (

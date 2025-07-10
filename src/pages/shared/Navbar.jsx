@@ -1,16 +1,9 @@
 import { Link, NavLink, useNavigate } from "react-router";
-import { CgProfile } from "react-icons/cg";
 import { toast } from "react-toastify";
 import { useState, useContext, use } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import { FiLogOut } from "react-icons/fi";
-import { IoDocumentTextOutline } from "react-icons/io5";
-import {
-  IoIosAddCircleOutline,
-  IoIosArrowDown,
-  IoIosArrowUp,
-  IoIosLogOut,
-} from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp, IoIosLogOut } from "react-icons/io";
 import { CiDark, CiLight } from "react-icons/ci";
 import { ThemeContext } from "../../context";
 import { Handshake, LayoutDashboard, UserRoundPen } from "lucide-react";
