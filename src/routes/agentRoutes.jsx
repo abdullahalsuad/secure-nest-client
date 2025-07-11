@@ -5,10 +5,15 @@ import AssignedCustomers from "../dashboard/agent/AssignedCustomers";
 import MyBlogs from "../dashboard/agent/MyBlogs";
 import BlogPosts from "../dashboard/admin/BlogPosts";
 import ClaimPolice from "../dashboard/agent/ClaimPolice";
+import AgentRoute from "./guards/AgentRoute";
 
 const agentRoutes = {
   path: "/agent",
-  element: <AgentLayout />,
+  element: (
+    <AgentRoute>
+      <AgentLayout />
+    </AgentRoute>
+  ),
   children: [
     {
       index: true,

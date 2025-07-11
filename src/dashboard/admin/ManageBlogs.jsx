@@ -7,12 +7,7 @@ const ManageBlogs = () => {
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4"></div>
 
       <div className="rounded-md  shadow-lg">
-        <div className="overflow-x-auto">
-          {/* {users.length === 0 ? (
-            <div className="text-center py-6 text-gray-500 dark:text-gray-400">
-              No users found.
-            </div>
-          ) : ( */}
+        <div className="rounded-md shadow-lg overflow-hidden">
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700  rounded-md bg-white dark:bg-gray-800  shadow-lg">
             <thead className="bg-gray-900 dark:bg-gray-700 rounded-md ">
               <tr>
@@ -65,7 +60,6 @@ const ManageBlogs = () => {
               {/* ))} */}
             </tbody>
           </table>
-          {/* )} */}
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/AuthProvider";
 import useUserRole from "../../hooks/useUserRole";
 import LoadingSpinner from "../../components/loading/LoadingSpinner";
 
-const AdminRoute = ({ children }) => {
+const AgentRoute = ({ children }) => {
   const { user, loading } = use(AuthContext);
   const { userRole, roleLoading } = useUserRole();
 
@@ -12,7 +12,7 @@ const AdminRoute = ({ children }) => {
     return <LoadingSpinner />;
   }
 
-  if (!user || userRole !== "Admin") {
+  if (!user || userRole !== "Agent") {
     return (
       <Navigate state={{ from: location.pathname }} to="/forbidden"></Navigate>
     );
@@ -21,4 +21,4 @@ const AdminRoute = ({ children }) => {
   return children;
 };
 
-export default AdminRoute;
+export default AgentRoute;

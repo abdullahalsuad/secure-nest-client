@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Filter, Calendar, User, FileText } from "lucide-react"; // Icons for filter buttons
 
 const ManageTransactions = () => {
   // Dummy data for Stripe payments
@@ -70,6 +69,7 @@ const ManageTransactions = () => {
 
   return (
     <div className="p-6 space-y-6 min-h-screen  text-gray-900 dark:text-gray-100 font-inter">
+      {/*  summary card */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {/* Daily */}
         <div className="bg-gradient-to-r from-pink-500 to-pink-700 text-white px-6 py-4 rounded-lg shadow-md">
@@ -111,72 +111,65 @@ const ManageTransactions = () => {
           </span>
         </div>
       </div>
-
       <div className="rounded-md shadow-lg">
-        <div className="overflow-x-auto">
-          {payments.length === 0 ? (
-            <div className="text-center py-6 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 rounded-md">
-              No payments found.
-            </div>
-          ) : (
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 rounded-md bg-white dark:bg-gray-800 shadow-lg">
-              <thead className="bg-gray-900 dark:bg-gray-700 rounded-md">
-                <tr>
-                  <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                    Transaction ID
-                  </th>
-                  <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                    User Email
-                  </th>
-                  <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                    Policy Name
-                  </th>
-                  <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                    Paid Amount
-                  </th>
-                  <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                    Date
-                  </th>
-                  <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                    Status
-                  </th>
+        <div className="rounded-md shadow-lg overflow-hidden">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 rounded-md bg-white dark:bg-gray-800 shadow-lg">
+            <thead className="bg-gray-900 dark:bg-gray-700 rounded-md">
+              <tr>
+                <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
+                  Transaction ID
+                </th>
+                <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
+                  User Email
+                </th>
+                <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
+                  Policy Name
+                </th>
+                <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
+                  Paid Amount
+                </th>
+                <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
+                  Date
+                </th>
+                <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+              {payments.map((payment) => (
+                <tr
+                  key={payment.id}
+                  className="transition-colors duration-150 hover:bg-gray-50 dark:hover:bg-gray-700"
+                >
+                  <td className="px-6 py-4 text-center text-sm font-medium text-gray-900 dark:text-white">
+                    {payment.id}
+                  </td>
+                  <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
+                    {payment.userEmail}
+                  </td>
+                  <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
+                    {payment.policyName}
+                  </td>
+                  <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
+                    ${payment.paidAmount.toFixed(2)}
+                  </td>
+                  <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
+                    {new Date(payment.date).toLocaleString()}
+                  </td>
+                  <td className="px-6 py-4 text-center text-sm">
+                    <span
+                      className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(
+                        payment.status
+                      )}`}
+                    >
+                      {payment.status.toUpperCase()}
+                    </span>
+                  </td>
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                {payments.map((payment) => (
-                  <tr
-                    key={payment.id}
-                    className="transition-colors duration-150 hover:bg-gray-50 dark:hover:bg-gray-700"
-                  >
-                    <td className="px-6 py-4 text-center text-sm font-medium text-gray-900 dark:text-white">
-                      {payment.id}
-                    </td>
-                    <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
-                      {payment.userEmail}
-                    </td>
-                    <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
-                      {payment.policyName}
-                    </td>
-                    <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
-                      ${payment.paidAmount.toFixed(2)}
-                    </td>
-                    <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
-                      {new Date(payment.date).toLocaleString()}
-                    </td>
-                    <td className="px-6 py-4 text-center text-sm">
-                      <span
-                        className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(
-                          payment.status
-                        )}`}
-                      >
-                        {payment.status.toUpperCase()}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
