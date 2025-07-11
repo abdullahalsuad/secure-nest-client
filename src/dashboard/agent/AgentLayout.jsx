@@ -3,6 +3,7 @@ import { Outlet } from "react-router";
 import SideBar from "../../components/dashboard/Sidebar";
 import DashboardHeader from "../../components/dashboard/DashboardHeader";
 import {
+  FileUser,
   LayoutDashboard,
   ScrollText,
   SquarePen,
@@ -13,12 +14,13 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const AgentLayout = () => {
   const agentLinks = [
     { name: "Dashboard", path: "/agent", icon: LayoutDashboard },
+    { name: "Policy clearance", path: "claim", icon: FileUser },
     {
       name: "Assigned Customers",
       path: "assigned-customers",
       icon: UserRoundCheck,
     },
-    { name: "Manage Blogs", path: "manage-blogs", icon: ScrollText },
+    { name: "My Blogs", path: "my-blogs", icon: ScrollText },
     { name: "Blog Posts", path: "blog-posts", icon: SquarePen },
   ];
 

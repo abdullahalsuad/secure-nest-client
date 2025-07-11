@@ -1,7 +1,7 @@
 import { Ban, Edit, Trash } from "lucide-react";
 import React from "react";
 
-const ManageBlogs = () => {
+const MyBlogs = () => {
   return (
     <div className="p-6 space-y-6  min-h-screen">
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4"></div>
@@ -72,4 +72,4 @@ const ManageBlogs = () => {
   );
 };
 
-export default ManageBlogs;
+export default MyBlogs;

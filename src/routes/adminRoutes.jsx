@@ -4,7 +4,6 @@ import UpdateProfile from "../components/dashboard/UpdateProfile";
 import ManageUsers from "../dashboard/admin/ManageUsers";
 import AdminRoute from "./guards/AdminRoute";
 import AllApplications from "../dashboard/admin/AllApplications";
-import ManageAgents from "../dashboard/admin/ManageAgents";
 import ManagePolicies from "../dashboard/admin/ManagePolicies";
 import ManageTransactions from "../dashboard/admin/ManageTransactions";
 import ManageBlogs from "../dashboard/admin/ManageBlogs";
@@ -31,10 +30,7 @@ const adminRoutes = {
       path: "users",
       element: <ManageUsers />,
     },
-    {
-      path: "agents",
-      element: <ManageAgents />,
-    },
+
     {
       path: "policies",
       element: <ManagePolicies />,
@@ -47,10 +43,7 @@ const adminRoutes = {
       path: "manage-blogs",
       element: <ManageBlogs />,
     },
-    {
-      path: "blog-posts",
-      element: <BlogPosts />,
-    },
+
     {
       path: "update-profile",
       element: <UpdateProfile />,

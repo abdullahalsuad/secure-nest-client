@@ -1,8 +1,8 @@
 import React from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { FiEdit, FiEye, FiMail } from "react-icons/fi";
-import { SquarePen, Trash } from "lucide-react";
+
+import { Trash } from "lucide-react";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -120,9 +120,6 @@ const ManageUsers = () => {
                           <option value="Admin">Admin</option>
                         </select>
                       </div>
-                      <button className="flex items-center gap-1 text-blue-600 hover:text-white hover:bg-blue-600 dark:hover:bg-blue-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md">
-                        <FiEye size={16} /> View
-                      </button>
 
                       <button className="flex items-center gap-1 text-red-600 hover:text-white hover:bg-red-600 dark:hover:bg-red-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md">
                         <Trash size={16} /> Delete

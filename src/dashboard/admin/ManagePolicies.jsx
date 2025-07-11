@@ -1,4 +1,4 @@
-import { Ban, Trash, UserPlus } from "lucide-react";
+import { Ban, Edit, Trash, UserPlus } from "lucide-react";
 import React from "react";
 import { FiEye } from "react-icons/fi";
 
@@ -66,10 +66,10 @@ const ManagePolicies = () => {
 
                 <td className="px-6 py-4 text-sm font-medium flex justify-center gap-4">
                   <button className="flex items-center gap-1 text-blue-600 hover:text-white hover:bg-blue-600 dark:hover:bg-blue-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md">
-                    <FiEye size={16} /> Edit
+                    <Edit size={16} /> Edit
                   </button>
                   <button className="flex items-center gap-1 text-red-600 hover:text-white hover:bg-red-600 dark:hover:bg-red-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md">
-                    <Trash size={16} /> Remove
+                    <Trash size={16} /> Delete
                   </button>
                 </td>
               </tr>

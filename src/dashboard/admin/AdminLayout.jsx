@@ -19,11 +19,9 @@ const AdminLayout = () => {
     { name: "Dashboard", path: "/admin", icon: LayoutDashboard },
     { name: "Applications", path: "applications", icon: FileUser },
     { name: "Manage Users", path: "users", icon: Users },
-    { name: "Manage Agents", path: "agents", icon: UserCog },
     { name: "Manage Policies", path: "policies", icon: HeartHandshake },
     { name: "Manage Transactions", path: "transactions", icon: DollarSign },
     { name: "Manage Blogs", path: "manage-blogs", icon: ScrollText },
-    { name: "Blog Posts", path: "blog-posts", icon: SquarePen },
   ];
 
   return (
