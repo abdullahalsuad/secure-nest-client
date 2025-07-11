@@ -3,9 +3,11 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
 import { Trash } from "lucide-react";
+import UserRoleSelect from "./UserRoleSelect";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
+  // const [isChangeRole, setIsChangeRole] = useState(false);
 
   // Fetch all users
   const {
@@ -19,8 +21,6 @@ const ManageUsers = () => {
       return res.data;
     },
   });
-
-  console.log(users);
 
   if (isLoading) {
     return <div>loading...</div>;
@@ -110,20 +110,16 @@ const ManageUsers = () => {
                     </td>
 
                     <td className="px-6 py-4 text-sm font-medium flex justify-center gap-4">
-                      <div className=" text-center text-sm">
-                        <select
-                          //   value={user.userRole}
-                          className="px-4 py-1.5 rounded-md text-[12px] font-semibold cursor-pointer transition-all duration-200 border border-gray-400"
-                        >
-                          <option value="Customer">Customer</option>
-                          <option value="Agent">Agent</option>
-                          <option value="Admin">Admin</option>
-                        </select>
-                      </div>
+                      {/* btn to change role */}
 
-                      <button className="flex items-center gap-1 text-red-600 hover:text-white hover:bg-red-600 dark:hover:bg-red-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md">
+                      <UserRoleSelect
+                        userId={user.userId}
+                        currentRole={user.userRole}
+                      />
+
+                      {/* <button className="flex items-center gap-1 text-red-600 hover:text-white hover:bg-red-600 dark:hover:bg-red-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md">
                         <Trash size={16} /> Delete
-                      </button>
+                      </button> */}
                     </td>
                   </tr>
                 ))}

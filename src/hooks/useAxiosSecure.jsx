@@ -1,7 +1,7 @@
 import axios from "axios";
-import { AuthContext } from "../context/AuthProvider.jsx";
-
+// import { use } from "react";
 // import { useNavigate } from "react-router";
+// import { AuthContext } from "../context/AuthProvider";
 
 const instance = axios.create({
   baseURL: import.meta.env.DEV ? "http://localhost:3000/api/v1" : "",
@@ -10,6 +10,7 @@ const instance = axios.create({
 
 const useAxiosSecure = () => {
   // const navigate = useNavigate();
+  // const { signOutUser } = use(AuthContext);
 
   instance.interceptors.response.use(
     (res) => {

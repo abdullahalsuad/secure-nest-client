@@ -1,6 +1,5 @@
-import { Ban, Edit, Trash, UserPlus } from "lucide-react";
+import { Edit, Trash } from "lucide-react";
 import React from "react";
-import { FiEye } from "react-icons/fi";
 
 const ManagePolicies = () => {
   return (
