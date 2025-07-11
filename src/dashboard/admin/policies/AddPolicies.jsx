@@ -11,6 +11,8 @@ const AddPolicies = () => {
   const onSubmit = (data) => {
     console.log("Policy Data Submitted:", data);
     // You can send this data to your backend here
+
+    
   };
 
   return (

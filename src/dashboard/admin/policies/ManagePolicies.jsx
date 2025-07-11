@@ -6,7 +6,7 @@ const ManagePolicies = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="p-6 space-y-6 min-h-screen">
+    <div className="p-6 space-y-6">
       {/* Header & Add Button */}
       <div className="flex justify-end mt-6">
         <button
