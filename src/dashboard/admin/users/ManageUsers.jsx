@@ -1,13 +1,11 @@
 import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-
 import { Trash } from "lucide-react";
 import UserRoleSelect from "./UserRoleSelect";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
-  // const [isChangeRole, setIsChangeRole] = useState(false);
 
   // Fetch all users
   const {

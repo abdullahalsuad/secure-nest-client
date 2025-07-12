@@ -12,7 +12,7 @@ const AgentRoute = ({ children }) => {
     return <LoadingSpinner />;
   }
 
-  if (!user || userRole !== "Agent") {
+  if (!user || (userRole !== "Admin" && userRole !== "Agent")) {
     return (
       <Navigate state={{ from: location.pathname }} to="/forbidden"></Navigate>
     );

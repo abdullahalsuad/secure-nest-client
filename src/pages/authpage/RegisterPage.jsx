@@ -39,7 +39,6 @@ const RegisterPage = () => {
     const email = data.email;
     const name = data.fullName;
     const password = data.password;
-
     const profileImg = images;
 
     // Sign Up
