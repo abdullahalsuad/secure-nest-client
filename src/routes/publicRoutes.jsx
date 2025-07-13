@@ -4,6 +4,8 @@ import AgentsPage from "../pages/agents/AgentsPage";
 import HomePages from "../pages/home/HomePages";
 import FaqsPage from "../pages/FAQs/FaqsPage";
 import Forbidden from "../components/forbidden/Forbidden";
+import PolicyDetails from "../pages/all-policies/PolicyDetails";
+import QuotePage from "../pages/quote/QuotePage";
 
 const publicRoutes = {
   path: "/",
@@ -16,6 +18,14 @@ const publicRoutes = {
     {
       path: "/all-policies",
       element: <AllPoliciesPage />,
+    },
+    {
+      path: "/all-policies/:id",
+      element: <PolicyDetails />,
+    },
+    {
+      path: "/quote",
+      element: <QuotePage />,
     },
     {
       path: "/agents",

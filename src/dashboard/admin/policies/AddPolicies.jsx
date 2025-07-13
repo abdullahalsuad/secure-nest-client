@@ -28,7 +28,7 @@ const AddPolicies = ({ setIsModalOpen, refetch }) => {
 
     const policeData = {
       ...data,
-      policyImage: images,
+      policeImage: images,
       userId: user.uid,
       userEmail: user.email,
     };
