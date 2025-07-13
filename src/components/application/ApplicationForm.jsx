@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ApplicationForm = ({
@@ -8,6 +8,9 @@ const ApplicationForm = ({
   register,
   errors,
   policeId,
+  isSubmitLoading,
+  watch,
+  setValue,
 }) => {
   const axiosSecure = useAxiosSecure();
 
@@ -23,6 +26,12 @@ const ApplicationForm = ({
     },
     enabled: !!policeId,
   });
+
+  useEffect(() => {
+    if (police?.title) {
+      setValue("policeTitle", police.title);
+    }
+  }, [police, setValue]);
 
   if (isLoading)
     return <div className="text-center text-white p-4">Loading...</div>;
@@ -45,7 +54,7 @@ const ApplicationForm = ({
       <div className="mb-6 ">
         <h3 className="text-xl font-semibold mb-4">Selected Policy</h3>
         <div className="bg-white dark:bg-gray-700 p-4 rounded-md shadow border-dashed border-teal-900 border-2">
-          <p className="font-semibold text-lg">{police.title}</p>
+          <p className="font-semibold text-lg">{watch("policeTitle")}</p>
           <p className="text-sm mt-1">{police.category}</p>
           <img
             src={police.policeImage}
@@ -230,9 +239,10 @@ const ApplicationForm = ({
 
       <button
         type="submit"
-        className="w-full bg-teal-600 dark:bg-teal-500 hover:bg-teal-700 dark:hover:bg-teal-600 text-white py-3 rounded-md-lg font-semibold transition duration-200 rounded-md cursor-pointer"
+        disabled={isSubmitLoading}
+        className={`w-full py-3 font-semibold text-white rounded-md transition duration-200 cursor-pointer bg-teal-600 dark:bg-teal-500 hover:bg-teal-700 dark:hover:bg-teal-600 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500`}
       >
-        Submit Application
+        {isSubmitLoading ? "Submitting..." : "Submit Application"}
       </button>
     </form>
   );

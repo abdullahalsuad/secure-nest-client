@@ -3,11 +3,10 @@ import AdminOverview from "../dashboard/admin/AdminOverview";
 import UpdateProfile from "../components/dashboard/UpdateProfile";
 import ManageUsers from "../dashboard/admin/users/ManageUsers";
 import AdminRoute from "./guards/AdminRoute";
-import AllApplications from "../dashboard/admin/AllApplications";
 import ManagePolicies from "../dashboard/admin/policies/ManagePolicies";
 import ManageTransactions from "../dashboard/admin/ManageTransactions";
 import ManageBlogs from "../dashboard/admin/ManageBlogs";
-import BlogPosts from "../dashboard/admin/BlogPosts";
+import AllApplications from "../dashboard/admin/applications/AllApplications";
 
 const adminRoutes = {
   path: "/admin",

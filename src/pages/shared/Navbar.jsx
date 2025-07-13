@@ -15,7 +15,6 @@ const navLinks = [
   { name: "All Policies", path: "/all-policies" },
   { name: "Agents", path: "/agents" },
   { name: "Blogs", path: "/blogs" },
-  { name: "Quote", path: "/quote" },
 ];
 
 const getUserNavLinks = (role) => {

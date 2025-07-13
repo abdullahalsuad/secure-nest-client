@@ -40,7 +40,11 @@ const publicRoutes = {
     },
     {
       path: "/application/:policeId",
-      element: <ApplicationPage />,
+      element: (
+        <ProtectedRoute>
+          <ApplicationPage />
+        </ProtectedRoute>
+      ),
     },
     {
       path: "/blogs",
