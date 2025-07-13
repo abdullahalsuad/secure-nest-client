@@ -3,8 +3,11 @@ import { useForm } from "react-hook-form";
 import AdditionalInfo from "../../components/quote/AdditionalInfo";
 import QuoteResult from "../../components/quote/QuoteResult";
 import QuoteForm from "../../components/quote/QuoteForm";
+import { useParams } from "react-router";
 
 const QuotePage = () => {
+  const { id } = useParams();
+
   // scroll to top
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -105,7 +108,12 @@ const QuotePage = () => {
           </div>
 
           {/* Quote Results */}
-          <QuoteResult quote={quote} setQuote={setQuote} reset={reset} />
+          <QuoteResult
+            quote={quote}
+            setQuote={setQuote}
+            reset={reset}
+            policeId={id}
+          />
         </div>
 
         {/* Additional Info */}

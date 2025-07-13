@@ -33,7 +33,7 @@ const MainContent = () => {
   return (
     <div className="lg:col-span-2 space-y-8">
       {/* Key Features */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
           Key Features
         </h2>
@@ -67,7 +67,7 @@ const MainContent = () => {
       </div>
 
       {/* Benefits */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
           Policy Benefits
         </h2>
@@ -95,7 +95,7 @@ const MainContent = () => {
         </div>
       </div>
 
-      <div className=" rounded-2xl shadow-xl bg-gradient-to-br from-teal-600 via-gray-800 to-teal-700 p-20 text-white">
+      <div className=" rounded-2xl shadow-xl bg-gradient-to-br from-teal-600 via-gray-800 to-teal-700 p-20 text-white border border-gray-200">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           {/* Text Section */}
           <div>

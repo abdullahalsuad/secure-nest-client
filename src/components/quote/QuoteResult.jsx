@@ -1,7 +1,8 @@
 import { ChartColumnBig, FileText } from "lucide-react";
 import React from "react";
+import { Link } from "react-router";
 
-const QuoteResult = ({ quote, setQuote, reset }) => {
+const QuoteResult = ({ quote, setQuote, reset, policeId }) => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200">
       {!quote ? (
@@ -146,14 +147,16 @@ const QuoteResult = ({ quote, setQuote, reset }) => {
 
             {/* CTA */}
             <div className="space-y-3">
-              <button className="block w-full bg-teal-600 text-white text-center py-3 rounded-lg hover:bg-teal-700 transition-colors font-semibold cursor-pointer">
-                Apply for Policy
-              </button>
+              <Link to={`/application/${policeId}`}>
+                <button className="block w-full bg-teal-600 text-white text-center py-3 rounded-lg hover:bg-teal-700 transition-colors font-semibold cursor-pointer">
+                  Apply for Policy
+                </button>
+              </Link>
               <button
                 onClick={() => {
                   reset(), setQuote(null);
                 }}
-                className="block w-full border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 text-center py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+                className="block w-full border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 text-center py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer mt-4"
               >
                 Calculate New Quote
               </button>

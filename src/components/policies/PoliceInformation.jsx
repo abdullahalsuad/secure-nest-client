@@ -2,10 +2,8 @@ import React from "react";
 import { Link } from "react-router";
 
 const PoliceInformation = ({ police }) => {
-  console.log(police);
-
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8 border border-gray-200">
       <div className="md:flex">
         <div className="md:w-1/2">
           <img
@@ -61,9 +59,14 @@ const PoliceInformation = ({ police }) => {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link to={"/quote"}>
+            <Link to={`/quote/${police._id}`}>
               <button className="bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors text-center font-semibold cursor-pointer">
                 Get Quote
+              </button>
+            </Link>
+            <Link to={`/application/${police._id}`}>
+              <button className="bg-teal-800 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors text-center font-semibold cursor-pointer">
+                Apply for Policy
               </button>
             </Link>
           </div>
