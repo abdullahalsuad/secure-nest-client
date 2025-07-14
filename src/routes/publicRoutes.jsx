@@ -2,7 +2,6 @@ import App from "../App";
 import AllPoliciesPage from "../pages/all-policies/AllPoliciesPage";
 import AgentsPage from "../pages/agents/AgentsPage";
 import HomePages from "../pages/home/HomePages";
-
 import Forbidden from "../components/forbidden/Forbidden";
 import PolicyDetails from "../pages/all-policies/PolicyDetails";
 import QuotePage from "../pages/quote/QuotePage";

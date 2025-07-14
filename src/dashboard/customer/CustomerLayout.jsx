@@ -12,7 +12,7 @@ import DashboardHeader from "../../components/dashboard/DashboardHeader";
 
 const CustomerLayout = () => {
   const customerLinks = [
-    { name: "Dashboard", path: "/my-dashboard", icon: LayoutDashboard },
+    // { name: "Dashboard", path: "/my-dashboard", icon: LayoutDashboard },
     { name: "My Policies", path: "my-policies", icon: ShieldUser },
     { name: "My Payments", path: "my-payments", icon: DollarSign },
     { name: "Claim policy ", path: "claim-policy", icon: ShieldCheck },
