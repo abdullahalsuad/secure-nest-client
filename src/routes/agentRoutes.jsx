@@ -3,7 +3,7 @@ import AgentOverview from "../dashboard/agent/AgentOverview";
 import UpdateProfile from "../components/dashboard/UpdateProfile";
 import AssignedCustomers from "../dashboard/agent/AssignedCustomers";
 import MyBlogs from "../dashboard/agent/MyBlogs";
-import BlogPosts from "../dashboard/admin/BlogPosts";
+import BlogPosts from "../dashboard/common/blogs/BlogPosts";
 import ClaimPolice from "../dashboard/agent/ClaimPolice";
 import AgentRoute from "./guards/AgentRoute";
 

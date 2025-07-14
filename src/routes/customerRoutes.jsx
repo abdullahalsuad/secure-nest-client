@@ -2,7 +2,7 @@ import CustomerLayout from "../dashboard/customer/CustomerLayout";
 import CustomerOverview from "../dashboard/customer/CustomerOverview";
 import UpdateProfile from "../components/dashboard/UpdateProfile";
 import ProtectedRoute from "./guards/ProtectedRoute";
-import MyPolicies from "../dashboard/admin/users/MyPolicies";
+import MyPolicies from "../dashboard/customer/MyPolicies";
 import MyPayments from "../dashboard/customer/MyPayments";
 import ClaimPolicy from "../dashboard/customer/ClaimPolicy";
 

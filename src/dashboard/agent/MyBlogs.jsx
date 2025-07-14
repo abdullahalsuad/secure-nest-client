@@ -1,72 +1,101 @@
-import { Ban, Edit, Trash } from "lucide-react";
-import React from "react";
+import React, { useContext } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { Edit, Trash } from "lucide-react";
+
+import { AuthContext } from "../../context/AuthProvider";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { toast } from "react-toastify";
+import NoDataFound from "../../components/dashboard/NoDataFound";
 
 const MyBlogs = () => {
+  const { user } = useContext(AuthContext);
+  const queryClient = useQueryClient();
+  const axiosSecure = useAxiosSecure();
+  console.log(user.uid);
+
+  // Get user's blogs
+  const { data: blogs = [], isLoading } = useQuery({
+    queryKey: ["userBlogs", user._id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/my-blogs/${user.uid}`);
+      return res.data;
+    },
+  });
+
+  // Delete blog
+  const { mutate: deleteBlog, isLoading: deleting } = useMutation({
+    mutationFn: async (id) => await axiosSecure.delete(`/blogs/${id}`),
+    onSuccess: () => {
+      toast.success("Blog deleted");
+      queryClient.invalidateQueries(["userBlogs"]);
+    },
+    onError: () => toast.error("Failed to delete blog"),
+  });
+
+  const handleDelete = (id) => {
+    if (confirm("Are you sure you want to delete this blog?")) {
+      deleteBlog(id);
+    }
+  };
+
   return (
-    <div className="p-6 space-y-6  min-h-screen">
-      <div className="flex flex-col sm:flex-row justify-between items-center gap-4"></div>
-
-      <div className="rounded-md  shadow-lg">
-        <div className="overflow-x-auto">
-          {/* {users.length === 0 ? (
-            <div className="text-center py-6 text-gray-500 dark:text-gray-400">
-              No users found.
-            </div>
-          ) : ( */}
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700  rounded-md bg-white dark:bg-gray-800  shadow-lg">
-            <thead className="bg-gray-900 dark:bg-gray-700 rounded-md ">
+    <div className="p-6 space-y-6 min-h-screen">
+      <div className="overflow-x-auto shadow-md rounded-md">
+        <table className="min-w-full bg-white dark:bg-gray-800">
+          <thead className="bg-gray-900 dark:bg-gray-700">
+            <tr>
+              {["Title", "Author", "Date", "Actions"].map((head) => (
+                <th
+                  key={head}
+                  className="px-6 py-3 text-[15px] font-bold text-white text-center uppercase tracking-wider"
+                >
+                  {head}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+            {isLoading ? (
               <tr>
-                <th className="px-6 py-3 text-[15px] font-bold  text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                  Title
-                </th>
-                <th className="px-6 py-3 text-[15px] font-bold  text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                  Author
-                </th>
-                <th className="px-6 py-3 text-[15px] font-bold  text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                  Publish Date
-                </th>
-
-                <th className="px-6 py-3 text-[15px] font-bold  text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                  Date
-                </th>
-
-                <th className="px-6 py-3 text-[15px] font-bold  text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-              {/* {users.map((user) => ( */}
-              <tr className="transition-colors duration-150">
-                <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
-                  anme
-                </td>
-                <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
-                  {/* {user.userEmail} */}mail
-                </td>
-
-                <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
-                  Status
-                </td>
-
-                <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
-                  {/* {new Date(user.createdAt).toLocaleString()} */}date
-                </td>
-
-                <td className="px-6 py-4 text-sm font-medium flex justify-center gap-4">
-                  <button className="flex items-center gap-1 text-blue-600 hover:text-white hover:bg-blue-600 dark:hover:bg-blue-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md">
-                    <Edit size={16} /> View
-                  </button>
-                  <button className="flex items-center gap-1 text-red-600 hover:text-white hover:bg-red-600 dark:hover:bg-red-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md">
-                    <Trash size={16} /> Delete
-                  </button>
+                <td colSpan={4} className="text-center py-4">
+                  Loading...
                 </td>
               </tr>
-              {/* ))} */}
-            </tbody>
-          </table>
-          {/* )} */}
-        </div>
+            ) : blogs.length === 0 ? (
+              <tr>
+                <td colSpan={4} className="text-center py-4">
+                  <NoDataFound />
+                </td>
+              </tr>
+            ) : (
+              blogs.map((blog) => (
+                <tr key={blog._id} className="transition-colors duration-150">
+                  <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
+                    {blog.title}
+                  </td>
+                  <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
+                    {blog.author}
+                  </td>
+                  <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
+                    {new Date(blog.createdAt).toLocaleDateString()}
+                  </td>
+                  <td className="px-6 py-4 flex justify-center gap-3">
+                    <button className="flex items-center gap-1 text-teal-600 hover:text-white hover:bg-teal-600 transition px-4 py-1.5 border border-gray-300 rounded-md dark:bg-teal-600 dark:text-white dark:border-teal-600 cursor-pointer">
+                      <Edit size={16} /> View
+                    </button>
+                    <button
+                      onClick={() => handleDelete(blog._id)}
+                      className="flex items-center gap-1 text-red-600 hover:text-white hover:bg-red-600 transition px-4 py-1.5 border border-gray-300 rounded-md dark:bg-red-600 dark:text-white dark:border-red-600 cursor-pointer"
+                    >
+                      <Trash size={16} />
+                      {deleting ? "..." : "Delete"}
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );

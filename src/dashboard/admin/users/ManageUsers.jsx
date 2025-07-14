@@ -96,7 +96,7 @@ const ManageUsers = () => {
                 </td>
 
                 <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
-                  {new Date(user.createdAt).toLocaleString()}
+                  {new Date(user.createdAt).toLocaleDateString()}
                 </td>
 
                 <td className="px-6 py-4 text-sm font-medium flex justify-center gap-4">

@@ -61,7 +61,9 @@ const ManagePolicies = () => {
 
   // handle remove
   const handelDelete = (id) => {
-    deletePolicy(id);
+    if (confirm("Are you sure you want to delete this blog?")) {
+      deletePolicy(id);
+    }
   };
 
   // handle edit

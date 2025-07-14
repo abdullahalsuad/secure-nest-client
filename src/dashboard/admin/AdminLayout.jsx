@@ -21,6 +21,7 @@ const AdminLayout = () => {
     { name: "Manage Users", path: "users", icon: Users },
     { name: "Manage Policies", path: "policies", icon: HeartHandshake },
     { name: "Manage Transactions", path: "transactions", icon: DollarSign },
+    { name: "Post A Blog", path: "blog-posts", icon: SquarePen },
     { name: "Manage Blogs", path: "manage-blogs", icon: ScrollText },
   ];
 

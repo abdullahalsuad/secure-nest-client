@@ -7,6 +7,7 @@ import ManagePolicies from "../dashboard/admin/policies/ManagePolicies";
 import ManageTransactions from "../dashboard/admin/ManageTransactions";
 import ManageBlogs from "../dashboard/admin/ManageBlogs";
 import AllApplications from "../dashboard/admin/applications/AllApplications";
+import BlogPosts from "../dashboard/common/blogs/BlogPosts";
 
 const adminRoutes = {
   path: "/admin",
@@ -42,7 +43,10 @@ const adminRoutes = {
       path: "manage-blogs",
       element: <ManageBlogs />,
     },
-
+    {
+      path: "blog-posts",
+      element: <BlogPosts />,
+    },
     {
       path: "update-profile",
       element: <UpdateProfile />,

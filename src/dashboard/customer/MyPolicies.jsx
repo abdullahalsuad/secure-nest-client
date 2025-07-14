@@ -1,8 +1,8 @@
 import React, { use } from "react";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { AuthContext } from "../../../context/AuthProvider";
-import MyPoliceTableRow from "./MyPoliceTableRow";
+import { AuthContext } from "../../context/AuthProvider";
+import MyPoliceTableRow from "../admin/users/MyPoliceTableRow";
 
 const MyPolicies = () => {
   const axiosSecure = useAxiosSecure();
