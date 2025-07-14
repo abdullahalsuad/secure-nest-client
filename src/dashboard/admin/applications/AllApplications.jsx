@@ -2,10 +2,11 @@ import { Ban, CircleCheck, TicketCheck, UserPlus } from "lucide-react";
 import React from "react";
 import { FiEye } from "react-icons/fi";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const AllApplications = () => {
   const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
 
   // Fetch all applications
   const {
@@ -19,6 +20,24 @@ const AllApplications = () => {
         withCredentials: true,
       });
       return res.data;
+    },
+  });
+
+  const updateApplicationStatus = useMutation({
+    mutationFn: ({ applicationId, status }) =>
+      axiosSecure.patch(
+        `/applications/${applicationId}`,
+        { Status: status },
+        {
+          withCredentials: true,
+        }
+      ),
+    onSuccess: () => {
+      // Optionally invalidate the query to refresh data
+      queryClient.invalidateQueries(["all-applications"]);
+    },
+    onError: (error) => {
+      console.error("Error updating status:", error);
     },
   });
 
@@ -86,7 +105,7 @@ const AllApplications = () => {
                       }
                       dark:${
                         application.Status === "Approved"
-                          ? "bg-green-800 text-green-100"
+                          ? "bg-green-400 text-green-100"
                           : application.Status === "Rejected"
                           ? "bg-red-800 text-red-100"
                           : "bg-yellow-800 text-yellow-100"
@@ -104,12 +123,37 @@ const AllApplications = () => {
                   <button className="flex items-center gap-1 text-teal-600 hover:text-white hover:bg-teal-600 dark:hover:bg-teal-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md">
                     <UserPlus size={16} /> Assign Agent
                   </button>
-                  <button className="flex items-center gap-1 text-green-600 hover:text-white hover:bg-green-600 dark:hover:bg-green-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md">
-                    <CircleCheck size={16} /> Approved
-                  </button>
-                  <button className="flex items-center gap-1 text-red-600 hover:text-white hover:bg-red-600 dark:hover:bg-red-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md">
-                    <Ban size={16} /> Rejected
-                  </button>
+
+                  {application.Status !== "Approved" &&
+                    application.Status !== "Rejected" && (
+                    <>
+                      
+                      
+                        <button
+                          onClick={() =>
+                            updateApplicationStatus.mutate({
+                              applicationId: application._id,
+                              status: "Approved",
+                            })
+                          }
+                          className="flex items-center gap-1 text-green-600 hover:text-white hover:bg-green-600 dark:hover:bg-green-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md"
+                        >
+                          <CircleCheck size={16} /> Approve
+                        </button>
+
+                        <button
+                          onClick={() =>
+                            updateApplicationStatus.mutate({
+                              applicationId: application._id,
+                              status: "Rejected",
+                            })
+                          }
+                          className="flex items-center gap-1 text-red-600 hover:text-white hover:bg-red-600 dark:hover:bg-red-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md"
+                        >
+                          <Ban size={16} /> Reject
+                        </button>
+                      </>
+                    )}
                 </td>
               </tr>
             ))}

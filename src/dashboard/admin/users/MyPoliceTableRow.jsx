@@ -46,7 +46,7 @@ const MyPoliceTableRow = ({ application }) => {
                       }
                       dark:${
                         application.Status === "Approved"
-                          ? "bg-green-800 text-green-100"
+                          ? "bg-green-400 text-green-100"
                           : application.Status === "Rejected"
                           ? "bg-red-800 text-red-100"
                           : "bg-yellow-800 text-yellow-100"
