@@ -8,6 +8,7 @@ import QuotePage from "../pages/quote/QuotePage";
 import ProtectedRoute from "./guards/ProtectedRoute";
 import BlogPage from "../pages/blog/BlogPage";
 import ApplicationPage from "../pages/application/ApplicationPage";
+import BlogDetailPage from "../pages/blog/BlogDetailPage";
 
 const publicRoutes = {
   path: "/",
@@ -48,6 +49,10 @@ const publicRoutes = {
     {
       path: "/blogs",
       element: <BlogPage />,
+    },
+    {
+      path: "/blogs/:id",
+      element: <BlogDetailPage />,
     },
     {
       path: "/forbidden",

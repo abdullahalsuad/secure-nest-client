@@ -97,7 +97,9 @@ const Navbar = () => {
                 <div className="w-10 h-10 bg-gradient-to-r from-teal-700 to-teal-900 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-xl">N</span>
                 </div>
-                <span className="text-2xl font-bold">Secure Nest</span>
+                <span className="text-2xl font-bold dark:text-white">
+                  Secure Nest
+                </span>
               </div>
             </NavLink>
           </div>

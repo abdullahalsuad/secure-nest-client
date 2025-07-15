@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
   return (
-    <div className="flex min-h-screen flex-col bg-white dark:bg-gray-900">
+    <div className="flex min-h-screen flex-col bg-slate-200  bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-teal-900">
       <header>
         <Navbar />
       </header>

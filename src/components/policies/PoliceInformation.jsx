@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const PoliceInformation = ({ police }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8 border border-gray-200">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8 border border-gray-200 dark:border-0">
       <div className="md:flex">
         <div className="md:w-1/2">
           <img

@@ -26,7 +26,7 @@ const documents = [
 
 const DetailsSidebar = () => {
   return (
-    <div className="space-y-2 bg-white dark:bg-gray-800  rounded-xl  shadow-lg border border-gray-200">
+    <div className="space-y-2 bg-white dark:bg-gray-800  rounded-xl  shadow-lg border border-gray-200 dark:border-0">
       <div className=" rounded-xl  p-6">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
           Eligibility Criteria
