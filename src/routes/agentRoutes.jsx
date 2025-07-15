@@ -1,5 +1,4 @@
 import AgentLayout from "../dashboard/agent/AgentLayout";
-import AgentOverview from "../dashboard/agent/AgentOverview";
 import UpdateProfile from "../components/dashboard/UpdateProfile";
 import AssignedCustomers from "../dashboard/agent/AssignedCustomers";
 import MyBlogs from "../dashboard/agent/MyBlogs";
@@ -16,12 +15,9 @@ const agentRoutes = {
   ),
   children: [
     {
+      path: "claim",
       index: true,
-      element: <AgentOverview />,
-    },
-    {
-      path: "update-profile",
-      element: <UpdateProfile />,
+      element: <ClaimPolice />,
     },
     {
       path: "assigned-customers",
@@ -35,9 +31,10 @@ const agentRoutes = {
       path: "blog-posts",
       element: <BlogPosts />,
     },
+
     {
-      path: "claim",
-      element: <ClaimPolice />,
+      path: "update-profile",
+      element: <UpdateProfile />,
     },
   ],
 };

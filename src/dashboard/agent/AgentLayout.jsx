@@ -2,18 +2,11 @@ import React from "react";
 import { Outlet } from "react-router";
 import SideBar from "../../components/dashboard/Sidebar";
 import DashboardHeader from "../../components/dashboard/DashboardHeader";
-import {
-  FileUser,
-  LayoutDashboard,
-  ScrollText,
-  SquarePen,
-  UserRoundCheck,
-} from "lucide-react";
+import { FileUser, ScrollText, SquarePen, UserRoundCheck } from "lucide-react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const AgentLayout = () => {
   const agentLinks = [
-    { name: "Dashboard", path: "/agent", icon: LayoutDashboard },
     { name: "Policy clearance", path: "claim", icon: FileUser },
     {
       name: "Assigned Customers",
