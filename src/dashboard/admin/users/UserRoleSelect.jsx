@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { CircleX, UserRoundPen } from "lucide-react";
+import { UserRoundPen, X } from "lucide-react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import RoleDropdown from "./RoleDropdown";
 
@@ -45,13 +45,13 @@ const UserRoleSelect = ({ userId, currentRole }) => {
             onClick={() => setIsChangeRole(false)}
             className="flex items-center gap-1 text-teal-600 hover:text-white hover:bg-teal-600 dark:hover:bg-teal-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md"
           >
-            <CircleX size={16} />
+            <X size={16} />
           </button>
         </div>
       ) : (
         <button
           onClick={() => setIsChangeRole(true)}
-          className="flex items-center gap-1 text-teal-600 hover:text-white hover:bg-teal-600 dark:hover:bg-teal-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md"
+          className="flex items-center gap-1 text-teal-600 hover:text-white hover:bg-teal-600 dark:bg-teal-500 dark:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 dark:border-teal-500 rounded-md cursor-pointer shadow-sm hover:shadow-md"
         >
           <UserRoundPen size={16} /> Change role
         </button>
