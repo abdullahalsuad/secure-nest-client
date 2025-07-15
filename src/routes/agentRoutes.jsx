@@ -5,6 +5,7 @@ import MyBlogs from "../dashboard/agent/MyBlogs";
 import BlogPosts from "../dashboard/common/blogs/BlogPosts";
 import ClaimPolice from "../dashboard/agent/ClaimPolice";
 import AgentRoute from "./guards/AgentRoute";
+import ApplicationDetailsPage from "../dashboard/common/application/ApplicationDetailsPage";
 
 const agentRoutes = {
   path: "/agent",
@@ -22,6 +23,10 @@ const agentRoutes = {
     {
       path: "assigned-customers",
       element: <AssignedCustomers />,
+    },
+    {
+      path: "assigned-customers/:id",
+      element: <ApplicationDetailsPage />,
     },
     {
       path: "my-blogs",

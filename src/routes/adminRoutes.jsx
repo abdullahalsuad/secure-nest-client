@@ -8,6 +8,7 @@ import ManageTransactions from "../dashboard/admin/ManageTransactions";
 import ManageBlogs from "../dashboard/admin/ManageBlogs";
 import AllApplications from "../dashboard/admin/applications/AllApplications";
 import BlogPosts from "../dashboard/common/blogs/BlogPosts";
+import ApplicationDetailsPage from "../dashboard/common/application/ApplicationDetailsPage";
 
 const adminRoutes = {
   path: "/admin",
@@ -25,6 +26,10 @@ const adminRoutes = {
     {
       path: "applications",
       element: <AllApplications />,
+    },
+    {
+      path: "applications/:id",
+      element: <ApplicationDetailsPage />,
     },
     {
       path: "users",

@@ -11,7 +11,6 @@ const MyBlogs = () => {
   const { user } = useContext(AuthContext);
   const queryClient = useQueryClient();
   const axiosSecure = useAxiosSecure();
-  console.log(user.uid);
 
   // Get user's blogs
   const { data: blogs = [], isLoading } = useQuery({
@@ -81,7 +80,7 @@ const MyBlogs = () => {
                   </td>
                   <td className="px-6 py-4 flex justify-center gap-3">
                     <button className="flex items-center gap-1 text-teal-600 hover:text-white hover:bg-teal-600 transition px-4 py-1.5 border border-gray-300 rounded-md dark:bg-teal-600 dark:text-white dark:border-teal-600 cursor-pointer">
-                      <Edit size={16} /> View
+                      <Edit size={16} /> Edit
                     </button>
                     <button
                       onClick={() => handleDelete(blog._id)}

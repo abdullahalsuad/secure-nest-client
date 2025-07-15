@@ -2,6 +2,7 @@ import { Ban, ChevronDown, CircleCheck, Eye, UserPlus, X } from "lucide-react";
 import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Link } from "react-router";
 
 const AllApplications = () => {
   const axiosSecure = useAxiosSecure();
@@ -25,6 +26,8 @@ const AllApplications = () => {
       return res.data;
     },
   });
+
+  
 
   // Fetch all agents
   const {
@@ -145,8 +148,8 @@ const AllApplications = () => {
                       application.Status === "Approved"
                         ? "bg-green-400 text-green-100"
                         : application.Status === "Rejected"
-                        ? "bg-red-800 text-red-100"
-                        : "bg-yellow-800 text-yellow-100"
+                        ? "bg-red-100 text-red-800"
+                        : "bg-yellow-100 text-yellow-900"
                     }`}
                   >
                     {application.Status}
@@ -225,24 +228,13 @@ const AllApplications = () => {
 
                 <td className="px-6 py-4 text-sm font-medium flex  items-center gap-4">
                   {/* Approve / Reject Buttons */}
-                  <button
-                    onClick={() =>
-                      updateApplicationStatus.mutate({
-                        applicationId: application.applicationId,
-                        status: "Approved",
-                      })
-                    }
-                    className="flex items-center gap-1 text-teal-600 hover:text-white hover:bg-teal-600 dark:bg-teal-500 dark:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md dark:border-teal-500"
-                  >
-                    <Eye size={16} /> View
-                  </button>
                   {application.Status !== "Approved" &&
                     application.Status !== "Rejected" && (
                       <>
                         <button
                           onClick={() =>
                             updateApplicationStatus.mutate({
-                              applicationId: application.applicationId,
+                              applicationId: application._id,
                               status: "Approved",
                             })
                           }
@@ -254,7 +246,7 @@ const AllApplications = () => {
                         <button
                           onClick={() =>
                             updateApplicationStatus.mutate({
-                              applicationId: application.applicationId,
+                              applicationId: application._id,
                               status: "Rejected",
                             })
                           }
@@ -264,6 +256,13 @@ const AllApplications = () => {
                         </button>
                       </>
                     )}
+
+                  {/* view */}
+                  <Link to={`${application._id}`}>
+                    <button className="flex items-center justify-center gap-1 text-teal-600 hover:text-white hover:bg-teal-600 transition px-4 py-1.5 border border-gray-300 rounded-md dark:bg-teal-600 dark:text-white dark:border-teal-600 cursor-pointer mx-auto">
+                      <Eye size={16} /> View
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}

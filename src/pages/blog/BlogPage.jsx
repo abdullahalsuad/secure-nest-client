@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router";
 
 const BlogPage = () => {
   const axiosSecure = useAxiosSecure();
+
+  // scroll to top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Fetch all blogs
   const {
@@ -44,9 +49,7 @@ const BlogPage = () => {
   return (
     <section className="min-h-screen  py-16 px-4 my-20">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">
-          Latest Blogs
-        </h1>
+       
 
         {blogs.length === 0 ? (
           <p className="text-center text-gray-600 dark:text-gray-400 text-lg">

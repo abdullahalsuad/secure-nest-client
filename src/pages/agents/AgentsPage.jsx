@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AgentsPage = () => {
   const axiosSecure = useAxiosSecure();
+  // scroll to top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Fetch all agents
   const {

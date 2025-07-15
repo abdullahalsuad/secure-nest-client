@@ -14,12 +14,9 @@ const customerRoutes = {
     </ProtectedRoute>
   ),
   children: [
-    // {
-    //   index: true,
-    //   element: <CustomerOverview />,
-    // },
     {
       path: "my-policies",
+      index: true,
       element: <MyPolicies />,
     },
     {
