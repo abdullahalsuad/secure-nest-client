@@ -59,7 +59,7 @@ const ManageUsers = () => {
           </thead>
           <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
             {users.map((user) => (
-              <tr key={user.id} className="transition-colors duration-150">
+              <tr key={user._id} className="transition-colors duration-150">
                 <td className="px-6 py-4 text-center">
                   <div className="flex items-center">
                     <div className="w-10 h-10   rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">

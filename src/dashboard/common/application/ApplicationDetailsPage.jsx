@@ -270,25 +270,6 @@ const ApplicationDetailsPage = () => {
                 </div>
               </section>
             )}
-
-          {/* Status Update Button (only show if not Approved/Rejected) */}
-          {application?.Status !== "Approved" &&
-            application?.Status !== "Rejected" && (
-              <section className="pt-6 border-t border-gray-200 dark:border-gray-700 flex justify-center gap-4">
-                <button
-                  //   onClick={() => updateStatus("Approved")}
-                  className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-md transition"
-                >
-                  <CircleCheck size={18} /> Approve
-                </button>
-                <button
-                  //   onClick={() => updateStatus("Rejected")}
-                  className="flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md transition"
-                >
-                  <Ban size={18} /> Reject
-                </button>
-              </section>
-            )}
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../context/AuthProvider";
 import { ChevronDown, Eye } from "lucide-react";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 
 const AssignedCustomers = () => {
   const axiosSecure = useAxiosSecure();
@@ -33,6 +34,7 @@ const AssignedCustomers = () => {
         Status: status,
       }),
     onSuccess: () => {
+      toast.success(`Application status updated `);
       queryClient.invalidateQueries(["agent-assigned-applications", agentId]);
     },
   });
@@ -115,6 +117,7 @@ const AssignedCustomers = () => {
                   </td>
 
                   {/* Status Dropdown */}
+
                   <td className="px-6 py-4 text-center text-sm">
                     <div className="relative">
                       <select

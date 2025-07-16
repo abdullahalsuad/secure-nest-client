@@ -9,10 +9,12 @@ import ProtectedRoute from "./guards/ProtectedRoute";
 import BlogPage from "../pages/blog/BlogPage";
 import ApplicationPage from "../pages/application/ApplicationPage";
 import BlogDetailPage from "../pages/blog/BlogDetailPage";
+import NotFoundPage from "../components/notfound/NotFoundPage";
 
 const publicRoutes = {
   path: "/",
   element: <App />,
+  errorElement: <NotFoundPage />,
   children: [
     {
       index: true,

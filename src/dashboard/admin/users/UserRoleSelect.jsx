@@ -16,12 +16,10 @@ const UserRoleSelect = ({ userId, currentRole }) => {
       });
       return response.data;
     },
-    onSuccess: (data) => {
-      console.log("Role updated successfully:", data);
+    onSuccess: () => {
       toast.success("Role updated successfully");
     },
     onError: (err) => {
-      console.error("Failed to update role:", err);
       toast.err(`Error: ${err.response?.data?.message || err.message}`);
     },
   });

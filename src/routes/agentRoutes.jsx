@@ -3,12 +3,16 @@ import UpdateProfile from "../components/dashboard/UpdateProfile";
 import AssignedCustomers from "../dashboard/agent/AssignedCustomers";
 import MyBlogs from "../dashboard/agent/MyBlogs";
 import BlogPosts from "../dashboard/common/blogs/BlogPosts";
-import ClaimPolice from "../dashboard/agent/ClaimPolice";
+
 import AgentRoute from "./guards/AgentRoute";
 import ApplicationDetailsPage from "../dashboard/common/application/ApplicationDetailsPage";
+import PolicyClearance from "../dashboard/agent/PolicyClearance";
+
+import NotFoundPage from "../components/notfound/NotFoundPage";
 
 const agentRoutes = {
   path: "/agent",
+  errorElement: <NotFoundPage />,
   element: (
     <AgentRoute>
       <AgentLayout />
@@ -18,8 +22,9 @@ const agentRoutes = {
     {
       path: "claim",
       index: true,
-      element: <ClaimPolice />,
+      element: <PolicyClearance />,
     },
+
     {
       path: "assigned-customers",
       element: <AssignedCustomers />,

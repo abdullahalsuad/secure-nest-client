@@ -9,9 +9,11 @@ import ManageBlogs from "../dashboard/admin/ManageBlogs";
 import AllApplications from "../dashboard/admin/applications/AllApplications";
 import BlogPosts from "../dashboard/common/blogs/BlogPosts";
 import ApplicationDetailsPage from "../dashboard/common/application/ApplicationDetailsPage";
+import NotFoundPage from "../components/notfound/NotFoundPage";
 
 const adminRoutes = {
   path: "/admin",
+  errorElement: <NotFoundPage />,
   element: (
     <AdminRoute>
       <AdminLayout />
