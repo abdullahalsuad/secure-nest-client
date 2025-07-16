@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/AuthProvider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { ShieldPlus } from "lucide-react";
 import ClaimForm from "./ClaimForm";
+import NoDataFound from "../../components/dashboard/NoDataFound";
 
 const ClaimPolicy = () => {
   const { user } = use(AuthContext);
@@ -116,7 +117,7 @@ const ClaimPolicy = () => {
                   colSpan="6"
                   className="px-6 py-4 text-center text-gray-600 dark:text-gray-300"
                 >
-                  No approved policies found.
+                  <NoDataFound />
                 </td>
               </tr>
             )}

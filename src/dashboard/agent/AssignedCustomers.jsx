@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../context/AuthProvider";
 import { ChevronDown, Eye } from "lucide-react";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
+import NoDataFound from "../../components/dashboard/NoDataFound";
 
 const AssignedCustomers = () => {
   const axiosSecure = useAxiosSecure();
-  const queryClient = useAxiosSecure();
+  const queryClient = useQueryClient();
   const { user } = useContext(AuthContext);
   const agentId = user?.uid;
 
@@ -39,12 +40,6 @@ const AssignedCustomers = () => {
     },
   });
 
-  if (isLoading) {
-    return (
-      <div className="text-center py-10">Loading assigned applications...</div>
-    );
-  }
-
   if (error) {
     return (
       <div className="text-center text-red-500 py-10">
@@ -59,39 +54,42 @@ const AssignedCustomers = () => {
         Your Assigned Applications
       </h2>
 
-      {applications.length === 0 ? (
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md text-center">
-          <p className="text-gray-600 dark:text-gray-400">
-            No applications assigned to you yet.
-          </p>
-        </div>
-      ) : (
-        <div className="rounded-md shadow-lg overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-800 shadow-lg">
-            <thead className="bg-gray-900 dark:bg-gray-700">
+      <div className="rounded-md shadow-lg overflow-hidden">
+        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-800 shadow-lg">
+          <thead className="bg-gray-900 dark:bg-gray-700">
+            <tr>
+              {[
+                "Policy Name",
+                "Customer",
+                "Email",
+                "Date",
+                "Status",
+                "Actions",
+              ].map((head) => (
+                <th
+                  key={head}
+                  className="px-6 py-3 text-[15px] font-bold text-white text-center uppercase tracking-wider"
+                >
+                  {head}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+            {isLoading ? (
               <tr>
-                <th className="px-6 py-3 text-sm font-bold text-white uppercase tracking-wider text-center">
-                  Policy Name
-                </th>
-                <th className="px-6 py-3 text-sm font-bold text-white uppercase tracking-wider text-center">
-                  Customer
-                </th>
-                <th className="px-6 py-3 text-sm font-bold text-white uppercase tracking-wider text-center">
-                  Email
-                </th>
-                <th className="px-6 py-3 text-sm font-bold text-white uppercase tracking-wider text-center">
-                  Date
-                </th>
-                <th className="px-6 py-3 text-sm font-bold text-white uppercase tracking-wider text-center">
-                  Status
-                </th>
-                <th className="px-6 py-3 text-sm font-bold text-white uppercase tracking-wider text-center">
-                  Actions
-                </th>
+                <td colSpan={6} className="text-center py-4">
+                  Loading...
+                </td>
               </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-              {applications.map((application) => (
+            ) : applications.length === 0 ? (
+              <tr>
+                <td colSpan={6} className="text-center py-4">
+                  <NoDataFound />
+                </td>
+              </tr>
+            ) : (
+              applications.map((application) => (
                 <tr
                   key={application._id}
                   className="border-b border-gray-200 dark:border-gray-700"
@@ -151,11 +149,11 @@ const AssignedCustomers = () => {
                     </Link>
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../context/AuthProvider";
 import MyPoliceTableRow from "../admin/users/MyPoliceTableRow";
+import NoDataFound from "../../components/dashboard/NoDataFound";
 
 const MyPolicies = () => {
   const axiosSecure = useAxiosSecure();
@@ -23,10 +24,6 @@ const MyPolicies = () => {
     },
   });
 
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
-
   if (error) {
     return (
       <div className="text-center text-red-500 dark:text-red-400 py-10 dark:bg-gray-900">
@@ -41,42 +38,46 @@ const MyPolicies = () => {
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-800 shadow-lg">
           <thead className="bg-gray-900 dark:bg-gray-700">
             <tr>
-              <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                Policy Name
-              </th>
-
-              <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                Coverage
-              </th>
-
-              <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                Duration
-              </th>
-
-              <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                Premium
-              </th>
-
-              <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                Status
-              </th>
-
-              <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                Date
-              </th>
-              <th className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider">
-                Actions
-              </th>
+              {[
+                "Policy Name",
+                "Coverage",
+                "Duration",
+                "Premium",
+                "Status",
+                "Date",
+                "Actions",
+              ].map((head) => (
+                <th
+                  key={head}
+                  className="px-6 py-3 text-[15px] font-bold text-white text-center dark:text-gray-300 uppercase tracking-wider"
+                >
+                  {head}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-            {applications.map((application) => (
-              <MyPoliceTableRow
-                key={application._id}
-                application={application}
-                isLoading={isLoading}
-              />
-            ))}
+            {isLoading ? (
+              <tr>
+                <td colSpan={7} className="text-center py-4">
+                  Loading...
+                </td>
+              </tr>
+            ) : applications.length === 0 ? (
+              <tr>
+                <td colSpan={7} className="text-center py-4">
+                  <NoDataFound />
+                </td>
+              </tr>
+            ) : (
+              applications.map((application) => (
+                <MyPoliceTableRow
+                  key={application._id}
+                  application={application}
+                  isLoading={isLoading}
+                />
+              ))
+            )}
           </tbody>
         </table>
       </div>

@@ -1,5 +1,4 @@
 import CustomerLayout from "../dashboard/customer/CustomerLayout";
-import CustomerOverview from "../dashboard/customer/CustomerOverview";
 import UpdateProfile from "../components/dashboard/UpdateProfile";
 import ProtectedRoute from "./guards/ProtectedRoute";
 import MyPolicies from "../dashboard/customer/MyPolicies";
@@ -17,7 +16,6 @@ const customerRoutes = {
   ),
   children: [
     {
-      path: "my-policies",
       index: true,
       element: <MyPolicies />,
     },

@@ -20,7 +20,6 @@ const agentRoutes = {
   ),
   children: [
     {
-      path: "claim",
       index: true,
       element: <PolicyClearance />,
     },

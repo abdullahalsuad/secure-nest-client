@@ -11,6 +11,7 @@ import {
 import { AuthContext } from "../../context/AuthProvider";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import NoDataFound from "../../components/dashboard/NoDataFound";
 
 const PolicyClearance = () => {
   const axiosSecure = useAxiosSecure();
@@ -74,7 +75,6 @@ const PolicyClearance = () => {
     setPolicy(null);
   };
 
-  if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading claims: {error.message}</div>;
 
   return (
@@ -83,34 +83,37 @@ const PolicyClearance = () => {
         Claims List
       </h2>
 
-      {claims.length === 0 ? (
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md text-center">
-          <p className="text-gray-600 dark:text-gray-400">No claims yet.</p>
-        </div>
-      ) : (
-        <div className="rounded-md shadow-lg overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-800">
-            <thead className="bg-gray-900 dark:bg-gray-700">
+      <div className="rounded-md shadow-lg overflow-hidden">
+        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-800">
+          <thead className="bg-gray-900 dark:bg-gray-700">
+            <tr>
+              {["Policy Name", "Customer", "Reason", "Status", "Actions"].map(
+                (head) => (
+                  <th
+                    key={head}
+                    className="px-6 py-3 text-sm font-bold text-white uppercase tracking-wider text-center"
+                  >
+                    {head}
+                  </th>
+                )
+              )}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+            {isLoading ? (
               <tr>
-                <th className="px-6 py-3 text-sm font-bold text-white uppercase tracking-wider text-center">
-                  Policy Name
-                </th>
-                <th className="px-6 py-3 text-sm font-bold text-white uppercase tracking-wider text-center">
-                  Customer
-                </th>
-                <th className="px-6 py-3 text-sm font-bold text-white uppercase tracking-wider text-center">
-                  Reason
-                </th>
-                <th className="px-6 py-3 text-sm font-bold text-white uppercase tracking-wider text-center">
-                  Status
-                </th>
-                <th className="px-6 py-3 text-sm font-bold text-white uppercase tracking-wider text-center">
-                  Actions
-                </th>
+                <td colSpan={1} className="text-center py-4">
+                  Loading....
+                </td>
               </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-              {claims.map((claim) => (
+            ) : claims.length === 0 ? (
+              <tr>
+                <td colSpan={5} className="text-center py-4">
+                  <NoDataFound />
+                </td>
+              </tr>
+            ) : (
+              claims.map((claim) => (
                 <tr key={claim._id}>
                   <td className="text-center px-6 py-4">{claim.policeName}</td>
                   <td className="text-center px-6 py-4">
@@ -154,11 +157,11 @@ const PolicyClearance = () => {
                     </div>
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
 
       {/* MODAL */}
       {modalOpen && (
@@ -255,6 +258,8 @@ const PolicyClearance = () => {
               </>
             )}
           </div>
+
+          
         </div>
       )}
     </div>

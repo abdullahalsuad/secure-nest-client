@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Edit, Trash } from "lucide-react";
 
@@ -6,11 +6,20 @@ import { AuthContext } from "../../context/AuthProvider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import NoDataFound from "../../components/dashboard/NoDataFound";
+import EditBlogModal from "../common/blogs/EditBlogModal";
 
 const MyBlogs = () => {
   const { user } = useContext(AuthContext);
   const queryClient = useQueryClient();
   const axiosSecure = useAxiosSecure();
+
+  const [selectedBlog, setSelectedBlog] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleEdit = (blog) => {
+    setSelectedBlog(blog);
+    setIsModalOpen(true);
+  };
 
   // Get user's blogs
   const { data: blogs = [], isLoading } = useQuery({
@@ -79,7 +88,10 @@ const MyBlogs = () => {
                     {new Date(blog.createdAt).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 flex justify-center gap-3">
-                    <button className="flex items-center gap-1 text-teal-600 hover:text-white hover:bg-teal-600 transition px-4 py-1.5 border border-gray-300 rounded-md dark:bg-teal-600 dark:text-white dark:border-teal-600 cursor-pointer">
+                    <button
+                      onClick={() => handleEdit(blog)}
+                      className="flex items-center gap-1 text-teal-600 hover:text-white hover:bg-teal-600 transition px-4 py-1.5 border border-gray-300 rounded-md dark:bg-teal-600 dark:text-white dark:border-teal-600 cursor-pointer"
+                    >
                       <Edit size={16} /> Edit
                     </button>
                     <button
@@ -96,6 +108,16 @@ const MyBlogs = () => {
           </tbody>
         </table>
       </div>
+
+      {isModalOpen && selectedBlog && (
+        <EditBlogModal
+          blog={selectedBlog}
+          onClose={() => {
+            setIsModalOpen(false);
+            setSelectedBlog(null);
+          }}
+        />
+      )}
     </div>
   );
 };

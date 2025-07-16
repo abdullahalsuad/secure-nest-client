@@ -7,7 +7,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const AgentLayout = () => {
   const agentLinks = [
-    { name: "Policy clearance", path: "claim", icon: FileUser },
+    { name: "Policy clearance", path: "/agent", icon: FileUser },
     {
       name: "Assigned Customers",
       path: "assigned-customers",

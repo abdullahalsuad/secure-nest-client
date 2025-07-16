@@ -13,8 +13,8 @@ const SideBar = ({ links }) => {
 
   const handleSignOut = async () => {
     try {
-      await signOutUser();
       navigate("/");
+      await signOutUser();
       console.log("logout success");
       toast.success("Logout successful.");
     } catch (error) {

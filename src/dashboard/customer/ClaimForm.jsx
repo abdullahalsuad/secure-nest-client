@@ -1,12 +1,17 @@
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import useImageUpload from "../../hooks/useImageUpload";
+import { use } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 
 const ClaimForm = ({ application, setIsModalOpen, setSelectedApplication }) => {
-  //   console.log(application);
-
+  const { images, handleImageUpload, uploading } = useImageUpload();
   const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
+  const { user } = use(AuthContext);
+  const agentId = user?.uid;
 
   const {
     register,
@@ -19,6 +24,7 @@ const ClaimForm = ({ application, setIsModalOpen, setSelectedApplication }) => {
     mutationFn: (data) => axiosSecure.post("/claims", data),
     onSuccess: () => {
       toast.success("Claim submitted successfully!");
+      queryClient.invalidateQueries(["agent-assigned-applications", agentId]);
       reset();
     },
     onError: (err) => {
@@ -36,6 +42,7 @@ const ClaimForm = ({ application, setIsModalOpen, setSelectedApplication }) => {
       policeId: application.policeId,
       customerName: application.fullName,
       assignedAgentId: application.assignedAgent.agentID,
+      documentUrl: images,
       ...data,
     });
     setIsModalOpen(false);
@@ -79,16 +86,40 @@ const ClaimForm = ({ application, setIsModalOpen, setSelectedApplication }) => {
           )}
         </div>
 
-        {/* Document URL */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Document Image URL
+        {/* Document Picture */}
+        <div className="space-y-2">
+          <label
+            htmlFor="profilePicture"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
+            Document Picture
           </label>
-          <input
-            type="url"
-            placeholder="https://example.com/document.jpg"
-            className="w-full px-4 py-2 border rounded-md dark:bg-gray-700 dark:text-white"
-          />
+          <div className="relative">
+            <input
+              required
+              type="file"
+              id="profileImg"
+              accept="image/*"
+              onChange={(e) => handleImageUpload(e)}
+              disabled={uploading}
+              className={`
+              block w-full text-sm text-gray-500 dark:text-gray-300 file:mr-4 file:py-4 file:px-4
+              file:rounded-md file:border-0
+              file:text-sm file:font-semibold
+              file:bg-teal-500 file:text-white
+              hover:file:bg-teal-600
+              dark:file:bg-teal-600 dark:hover:file:bg-teal-700
+              border border-gray-300 dark:border-gray-600 rounded-lg
+              bg-white dark:bg-gray-700
+              focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500
+              transition-colors
+              ${uploading ? "cursor-not-allowed opacity-60" : "cursor-pointer"}
+            `}
+            />
+          </div>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+            PNG, JPG, GIF up to 5MB
+          </p>
         </div>
 
         <button
