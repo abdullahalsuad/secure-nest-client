@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router";
-import SideBar from "../../components/dashboard/Sidebar";
 import DashboardHeader from "../../components/dashboard/DashboardHeader";
 import { FileUser, ScrollText, SquarePen, UserRoundCheck } from "lucide-react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import SideBar from "../../components/dashboard/Sidebar";
 
 const AgentLayout = () => {
   const agentLinks = [
@@ -20,8 +20,7 @@ const AgentLayout = () => {
   return (
     <div className="flex min-h-screen bg-gray-100 dark:bg-gray-950 font-inter rounded-lg">
       {/* Sidebar */}
-      <SideBar links={agentLinks} />
-
+      <SideBar links={agentLinks} s />
       {/* Main Content Area */}
       <div className="flex-1 h-screen  flex flex-col ">
         {/* Top Navigation Bar */}
