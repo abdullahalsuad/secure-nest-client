@@ -90,7 +90,7 @@ const AgentsPage = () => {
 
                 {/* Specialties */}
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  {agent.specialties?.join(", ") || "Specialties not specified"}
+                  {agent.specialties || "Specialties not specified"}
                 </p>
               </div>
             ))}

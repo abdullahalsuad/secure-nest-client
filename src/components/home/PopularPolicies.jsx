@@ -46,7 +46,7 @@ const PopularPolicies = () => {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {policies.map((policy) => (
-            <PoliceCard police={policy} />
+            <PoliceCard police={policy} key={policy._id} />
           ))}
         </div>
       </div>

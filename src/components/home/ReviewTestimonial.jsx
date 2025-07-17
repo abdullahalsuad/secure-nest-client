@@ -1,5 +1,5 @@
 import Marquee from "react-fast-marquee";
-import ReviewCard from "./ReviewCard";
+import ReviewCard from "../../components/home/ReviewCard";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 

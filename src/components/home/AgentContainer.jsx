@@ -38,10 +38,10 @@ const AgentContainer = () => {
             {agents.map((agent) => (
               <div
                 key={agent.userId}
-                className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg text-center hover:shadow-xl transition  border border-gray-200 dark:border-0 ml-4"
+                className="w-[300px] bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg text-center hover:shadow-xl transition border border-gray-200 dark:border-0 ml-4"
               >
                 {/* Initial Avatar */}
-                <div className=" mb-4 flex items-center justify-center text-3xl text-white">
+                <div className="mb-4 flex items-center justify-center text-3xl text-white">
                   <img
                     src={agent.userProfile}
                     className="w-24 h-24 rounded-full border border-gray-400"
@@ -61,7 +61,7 @@ const AgentContainer = () => {
 
                 {/* Specialties */}
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  {agent.specialties?.join(", ") || "Specialties not specified"}
+                  {agent.specialties || "Specialties not specified"}
                 </p>
               </div>
             ))}

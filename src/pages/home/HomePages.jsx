@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import HeroSlider from "./HeroSlider";
-import NewsletterForm from "./NewsletterForm";
-import LatestBlogs from "./LatestBlogs";
-import PopularPolicies from "./PopularPolicies";
-import ReviewTestimonial from "./ReviewTestimonial";
-import AgentContainer from "./AgentContainer";
+import HeroSlider from "../../components/home/HeroSlider";
+import PopularPolicies from "../../components/home/PopularPolicies";
+import ReviewTestimonial from "../../components/home/ReviewTestimonial";
+import LatestBlogs from "../../components/home/LatestBlogs";
+import NewsletterForm from "../../components/home/NewsletterForm";
+import AgentContainer from "../../components/home/AgentContainer";
 
 const HomePages = () => {
   // scroll to top
