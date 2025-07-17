@@ -12,6 +12,7 @@ const SideBar = ({ links }) => {
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
+    
     try {
       navigate("/");
       await signOutUser();

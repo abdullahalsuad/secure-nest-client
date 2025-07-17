@@ -3,7 +3,7 @@ import { Outlet } from "react-router";
 import DashboardHeader from "../../components/dashboard/DashboardHeader";
 import { FileUser, ScrollText, SquarePen, UserRoundCheck } from "lucide-react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import SideBar from "../../components/dashboard/Sidebar";
+import SideBar from "../../components/dashboard/SideBar";
 
 const AgentLayout = () => {
   const agentLinks = [

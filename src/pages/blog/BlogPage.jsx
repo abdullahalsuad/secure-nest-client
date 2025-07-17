@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router";
+import BlogsCardSkeleton from "../../components/loading/BlogsCardSkeleton";
 
 const BlogPage = () => {
   const axiosSecure = useAxiosSecure();
@@ -28,10 +29,10 @@ const BlogPage = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex justify-center items-center bg-gray-50 dark:bg-gray-900">
-        <span className="text-xl text-gray-700 dark:text-gray-300 animate-pulse">
-          Loading blogs...
-        </span>
+      <div className="max-w-7xl mx-auto min-h-screen  justify-center items-center bg-gray-50 dark:bg-gray-900 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-20 py-16">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <BlogsCardSkeleton key={index} />
+        ))}
       </div>
     );
   }

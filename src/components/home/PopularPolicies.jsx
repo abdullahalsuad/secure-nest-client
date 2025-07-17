@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import PoliceCard from "../../components/policies/PoliceCard";
+import PoliceCardSkeleton from "../loading/PoliceCardSkeleton";
 
 const PopularPolicies = () => {
   const axiosSecure = useAxiosSecure();
@@ -22,8 +23,10 @@ const PopularPolicies = () => {
 
   if (isLoading) {
     return (
-      <div className="text-center text-gray-400 dark:text-gray-500">
-        Loading...
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <PoliceCardSkeleton key={index} />
+        ))}
       </div>
     );
   }

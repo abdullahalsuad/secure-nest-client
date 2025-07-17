@@ -34,7 +34,7 @@ const AgentContainer = () => {
 
         {/* Bottom Marquee - Right to Left */}
         <div className="overflow-hidden">
-          <Marquee speed={50} gradient={false} direction="right" play={true}>
+          <Marquee speed={50} gradient={false} direction="left" play={true}>
             {agents.map((agent) => (
               <div
                 key={agent.userId}
