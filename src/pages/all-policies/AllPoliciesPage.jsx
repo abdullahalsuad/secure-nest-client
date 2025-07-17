@@ -64,7 +64,7 @@ const AllPoliciesPages = () => {
         params.append("category", selectedCategory);
       if (debouncedSearchTerm) params.append("search", debouncedSearchTerm);
       params.append("page", currentPage.toString());
-      params.append("limit", "9");
+      params.append("limit", "6");
 
       const res = await axiosSecure.get(`/polices?${params}`, {
         withCredentials: true,

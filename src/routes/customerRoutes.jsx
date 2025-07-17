@@ -5,6 +5,7 @@ import MyPolicies from "../dashboard/customer/MyPolicies";
 import MyPayments from "../dashboard/customer/MyPayments";
 import ClaimPolicy from "../dashboard/customer/ClaimPolicy";
 import NotFoundPage from "../components/notfound/NotFoundPage";
+import PaymentCard from "../dashboard/customer/payment/PaymentCard";
 
 const customerRoutes = {
   path: "/my-dashboard",
@@ -22,6 +23,10 @@ const customerRoutes = {
     {
       path: "my-payments",
       element: <MyPayments />,
+    },
+    {
+      path: "my-payments/:policeId/:applicationId",
+      element: <PaymentCard />,
     },
     {
       path: "claim-policy",
