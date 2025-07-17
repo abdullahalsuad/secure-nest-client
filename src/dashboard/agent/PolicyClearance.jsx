@@ -102,7 +102,7 @@ const PolicyClearance = () => {
           <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
             {isLoading ? (
               <tr>
-                <td colSpan={1} className="text-center py-4">
+                <td colSpan={5} className="text-center py-4">
                   Loading....
                 </td>
               </tr>
@@ -258,8 +258,6 @@ const PolicyClearance = () => {
               </>
             )}
           </div>
-
-          
         </div>
       )}
     </div>
