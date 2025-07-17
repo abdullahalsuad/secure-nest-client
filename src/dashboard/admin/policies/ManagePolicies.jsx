@@ -58,6 +58,7 @@ const ManagePolicies = () => {
       </div>
     );
   }
+  console.log(polices.data);
 
   // handle remove
   const handelDelete = (id) => {
@@ -88,7 +89,7 @@ const ManagePolicies = () => {
 
       {/* Table */}
       <div className="rounded-md  overflow-hidden shadow-lg">
-        {polices.length === 0 ? (
+        {polices.data.length === 0 ? (
           <NoDataFound />
         ) : (
           <div className="overflow-x-auto shadow-lg">
@@ -116,7 +117,7 @@ const ManagePolicies = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                {polices.map((police) => (
+                {polices.data.map((police) => (
                   <tr
                     key={police._id}
                     className="transition-colors duration-150"

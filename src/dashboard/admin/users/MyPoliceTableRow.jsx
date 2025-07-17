@@ -96,13 +96,25 @@ const MyPoliceTableRow = ({ application }) => {
           {new Date(application.createdAt).toLocaleString()}
         </td>
 
+        <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
+          {application.Status === "Rejected"
+            ? application.rejectionReason
+            : "No Messages"}
+        </td>
+
         <td className="px-6 py-4 text-sm font-medium flex justify-center gap-4">
-          <button
-            onClick={() => setShowModal(true)}
-            className="flex items-center gap-1 text-orange-600 hover:text-white hover:bg-orange-600 dark:hover:bg-orange-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md"
-          >
-            <Star size={16} /> Rate
-          </button>
+          {application.Status === "Approved" ? (
+            <button
+              onClick={() => setShowModal(true)}
+              className="flex items-center gap-1 text-orange-600 hover:text-white hover:bg-orange-600 dark:hover:bg-orange-500 dark:hover:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 rounded-md cursor-pointer shadow-sm hover:shadow-md"
+            >
+              <Star size={16} /> Rate
+            </button>
+          ) : (
+            <span className="text-red-300">
+              Approval is required before review.
+            </span>
+          )}
         </td>
       </tr>
 

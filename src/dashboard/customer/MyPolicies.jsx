@@ -45,6 +45,7 @@ const MyPolicies = () => {
                 "Premium",
                 "Status",
                 "Date",
+                "Rejection Reason",
                 "Actions",
               ].map((head) => (
                 <th

@@ -1,16 +1,22 @@
 import { Ban, ChevronDown, CircleCheck, Eye, UserPlus, X } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router";
+import RejectionModal from "./RejectionModal";
 
 const AllApplications = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
   // State for dropdown
-  const [selectedAppId, setSelectedAppId] = React.useState(null);
-  const [selectedAgentId, setSelectedAgentId] = React.useState("");
+  const [selectedAppId, setSelectedAppId] = useState(null);
+  const [selectedAgentId, setSelectedAgentId] = useState("");
+
+  // State for rejection modal
+  const [showRejectionModal, setShowRejectionModal] = useState(false);
+  const [selectedAppIdForRejection, setSelectedAppIdForRejection] =
+    useState(null);
 
   // Fetch all applications
   const {
@@ -26,8 +32,6 @@ const AllApplications = () => {
       return res.data;
     },
   });
-
-  
 
   // Fetch all agents
   const {
@@ -46,10 +50,10 @@ const AllApplications = () => {
 
   // Mutation to update application status (Approved/Rejected)
   const updateApplicationStatus = useMutation({
-    mutationFn: ({ applicationId, status }) =>
+    mutationFn: ({ applicationId, status, rejectionReason }) =>
       axiosSecure.patch(
         `/applications/${applicationId}`,
-        { Status: status },
+        { Status: status, rejectionReason },
         {
           withCredentials: true,
         }
@@ -155,11 +159,9 @@ const AllApplications = () => {
                     {application.Status}
                   </span>
                 </td>
-
                 <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
                   {new Date(application.createdAt).toLocaleString()}
                 </td>
-
                 {/* Assign Agent Button */}
                 <td className="px-6 py-4 text-center text-sm text-gray-900 dark:text-white">
                   {application.assignedAgent.agentID === "no-assigned" &&
@@ -175,7 +177,6 @@ const AllApplications = () => {
                       {application.assignedAgent.agentName}
                     </span>
                   )}
-
                   {/* Show select dropdown if selected */}
                   {selectedAppId === application._id && (
                     <div className="mt-2 flex items-center gap-2">
@@ -186,7 +187,6 @@ const AllApplications = () => {
                           onChange={(e) => {
                             const selectedId = e.target.value;
                             setSelectedAgentId(selectedId);
-
                             const agent = agents.find(
                               (a) => a.userId === e.target.value
                             );
@@ -209,13 +209,11 @@ const AllApplications = () => {
                             </option>
                           ))}
                         </select>
-
                         {/* Custom dropdown arrow */}
                         <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500">
                           <ChevronDown />
                         </div>
                       </div>
-
                       <button
                         onClick={() => setSelectedAppId(null)}
                         className="text-red-500 hover:text-red-700 cursor-pointer"
@@ -225,8 +223,7 @@ const AllApplications = () => {
                     </div>
                   )}
                 </td>
-
-                <td className="px-6 py-4 text-sm font-medium flex  items-center gap-4">
+                <td className="px-6 py-4 text-sm font-medium flex items-center gap-4">
                   {/* Approve / Reject Buttons */}
                   {application.Status !== "Approved" &&
                     application.Status !== "Rejected" && (
@@ -244,12 +241,10 @@ const AllApplications = () => {
                         </button>
 
                         <button
-                          onClick={() =>
-                            updateApplicationStatus.mutate({
-                              applicationId: application._id,
-                              status: "Rejected",
-                            })
-                          }
+                          onClick={() => {
+                            setSelectedAppIdForRejection(application._id);
+                            setShowRejectionModal(true);
+                          }}
                           className="flex items-center gap-1 text-red-600 hover:text-white hover:bg-red-600 dark:bg-red-500 dark:text-white transition-all duration-300 px-4 py-1.5 border border-gray-300 dark:border-red-500 rounded-md cursor-pointer shadow-sm hover:shadow-md"
                         >
                           <Ban size={16} /> Reject
@@ -257,7 +252,7 @@ const AllApplications = () => {
                       </>
                     )}
 
-                  {/* view */}
+                  {/* View Button */}
                   <Link to={`${application._id}`}>
                     <button className="flex items-center justify-center gap-1 text-teal-600 hover:text-white hover:bg-teal-600 transition px-4 py-1.5 border border-gray-300 rounded-md dark:bg-teal-600 dark:text-white dark:border-teal-600 cursor-pointer mx-auto">
                       <Eye size={16} /> View
@@ -269,6 +264,25 @@ const AllApplications = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Rejection Modal */}
+      <RejectionModal
+        isOpen={showRejectionModal}
+        onClose={() => {
+          setShowRejectionModal(false);
+          setSelectedAppIdForRejection(null);
+        }}
+        onSubmit={(appId, feedback) => {
+          updateApplicationStatus.mutate({
+            applicationId: appId,
+            status: "Rejected",
+            rejectionReason: feedback,
+          });
+          setShowRejectionModal(false);
+          setSelectedAppIdForRejection(null);
+        }}
+        applicationId={selectedAppIdForRejection}
+      />
     </div>
   );
 };
