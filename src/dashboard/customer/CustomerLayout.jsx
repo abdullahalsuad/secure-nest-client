@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import React from "react";
 import { Outlet } from "react-router";
-import SideBar from "../../components/dashboard/Sidebar";
+import SideBar from "../../components/dashboard/SideBar";
 import DashboardHeader from "../../components/dashboard/DashboardHeader";
 
 const CustomerLayout = () => {
