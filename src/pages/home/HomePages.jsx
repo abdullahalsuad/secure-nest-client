@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import HeroSlider from "./HeroSlider";
 import NewsletterForm from "./NewsletterForm";
 import LatestBlogs from "./LatestBlogs";
+import PopularPolicies from "./PopularPolicies";
+import ReviewTestimonial from "./ReviewTestimonial";
+import AgentContainer from "./AgentContainer";
 
 const HomePages = () => {
   // scroll to top
@@ -15,14 +18,29 @@ const HomePages = () => {
         <HeroSlider />
       </div>
 
+      <div className="my-20">
+        <PopularPolicies />
+      </div>
+
+      <div className="my-20">
+        <ReviewTestimonial />
+      </div>
+
       {/* blogs */}
-      <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mt-12">
-        Latest Blogs
-      </h1>
-      <LatestBlogs />
+      <div className="my-20">
+        <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-10">
+          Latest <span className="text-teal-600 dark:text-teal-400">Blogs</span>
+        </h1>
+        <LatestBlogs />
+      </div>
 
       {/* NewsletterForm */}
       <NewsletterForm />
+
+      {/* agents */}
+      <div className="my-20">
+        <AgentContainer />
+      </div>
     </>
   );
 };

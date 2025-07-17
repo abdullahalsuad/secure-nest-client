@@ -22,7 +22,7 @@ const EditPolice = ({ police, setIsEditModalOpen }) => {
     },
     onSuccess: () => {
       toast.success("Policy updated successfully!");
-      queryClient.invalidateQueries({ queryKey: ["polices"] });
+      queryClient.invalidateQueries({ queryKey: ["all-polices"] });
     },
     onError: (err) => {
       toast.error(

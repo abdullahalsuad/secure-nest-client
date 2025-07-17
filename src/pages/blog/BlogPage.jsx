@@ -49,7 +49,17 @@ const BlogPage = () => {
   return (
     <section className="min-h-screen  py-16 px-4 my-20">
       <div className="max-w-7xl mx-auto">
-       
+        {/* heading */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            The Insurance{" "}
+            <span className="text-teal-600 dark:text-teal-400">Blogs</span>
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400">
+            Your go-to source for advice, updates, and real-world coverage
+            insights.
+          </p>
+        </div>
 
         {blogs.length === 0 ? (
           <p className="text-center text-gray-600 dark:text-gray-400 text-lg">

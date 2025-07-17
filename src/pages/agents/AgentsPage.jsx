@@ -47,9 +47,16 @@ const AgentsPage = () => {
   return (
     <section className="min-h-screen  py-20 my-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">
-          Our Licensed Agents
-        </h1>
+        {/* heading */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Our Licensed{" "}
+            <span className="text-teal-600 dark:text-teal-400">Agents</span>
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400">
+            Real People. Real Coverage. Real Care
+          </p>
+        </div>
 
         {agents.length === 0 ? (
           <p className="text-center text-gray-600 dark:text-gray-400 text-lg">

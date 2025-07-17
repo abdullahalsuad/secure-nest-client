@@ -17,6 +17,7 @@ const ManagePolicies = () => {
   //custom hooks
   const axiosSecure = useAxiosSecure();
 
+  // delete
   const { mutate: deletePolicy } = useMutation({
     mutationFn: async (id) => {
       const res = await axiosSecure.delete(`/policies/${id}`);
@@ -24,7 +25,7 @@ const ManagePolicies = () => {
     },
     onSuccess: () => {
       toast.success("Policy deleted successfully!");
-      queryClient.invalidateQueries({ queryKey: ["polices"] });
+      queryClient.invalidateQueries({ queryKey: ["all-polices"] });
     },
     onError: (err) => {
       toast.error(
@@ -33,16 +34,18 @@ const ManagePolicies = () => {
     },
   });
 
-  // Fetch all users
+  // Fetch all data
   const {
     data: polices = [],
     isLoading,
     error,
     refetch,
   } = useQuery({
-    queryKey: ["polices"],
+    queryKey: ["all-polices"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/polices", { withCredentials: true });
+      const res = await axiosSecure.get("/all-polices", {
+        withCredentials: true,
+      });
       return res.data;
     },
   });
@@ -58,7 +61,6 @@ const ManagePolicies = () => {
       </div>
     );
   }
-  console.log(polices.data);
 
   // handle remove
   const handelDelete = (id) => {
@@ -89,7 +91,7 @@ const ManagePolicies = () => {
 
       {/* Table */}
       <div className="rounded-md  overflow-hidden shadow-lg">
-        {polices.data.length === 0 ? (
+        {polices.length === 0 ? (
           <NoDataFound />
         ) : (
           <div className="overflow-x-auto shadow-lg">
@@ -117,7 +119,7 @@ const ManagePolicies = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                {polices.data.map((police) => (
+                {polices.map((police) => (
                   <tr
                     key={police._id}
                     className="transition-colors duration-150"
