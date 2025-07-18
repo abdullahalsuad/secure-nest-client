@@ -76,6 +76,7 @@ const PaymentForm = ({ police, applicationId }) => {
           const paymentData = {
             orderId: police._id,
             applicationId: applicationId,
+            policeName: police.title,
             email: user.email,
             name: user.displayName,
             userID: user.uid,
@@ -118,7 +119,7 @@ const PaymentForm = ({ police, applicationId }) => {
           <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
             Card Details
           </label>
-          <CardElement className="p-3 bg-white dark:bg-gray-900 border rounded-md" />
+          <CardElement className="p-3 bg-white dark:bg-gray-900 dark:text-white border rounded-md" />
         </div>
 
         <button

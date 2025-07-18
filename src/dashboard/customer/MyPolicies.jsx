@@ -60,13 +60,13 @@ const MyPolicies = () => {
           <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
             {isLoading ? (
               <tr>
-                <td colSpan={7} className="text-center py-4">
+                <td colSpan={8} className="text-center py-4">
                   Loading...
                 </td>
               </tr>
             ) : applications.length === 0 ? (
               <tr>
-                <td colSpan={7} className="text-center py-4">
+                <td colSpan={8} className="text-center py-4">
                   <NoDataFound />
                 </td>
               </tr>
