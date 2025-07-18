@@ -103,7 +103,7 @@ const AllApplications = () => {
               {[
                 "Policy Name",
                 "Customer",
-                "Email",
+                "Number",
                 "Date",
                 "Status",
                 "Agent",
