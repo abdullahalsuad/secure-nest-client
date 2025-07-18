@@ -1,28 +1,42 @@
-# 🚀 Frontend React Boilerplate
+# 🛡️ Secure Nest – Modern Insurance Platform
 
-Modern React 19 starter with Vite + Tailwind CSS + Firebase
+[![React](https://img.shields.io/badge/React-19-blue)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-6.3-brightgreen)](https://vitejs.dev/)
+[![Tailwind](https://img.shields.io/badge/TailwindCSS-4.1-teal)](https://tailwindcss.com/)
+[![Firebase](https://img.shields.io/badge/Firebase-Auth%2FDB-orange)](https://firebase.google.com/)
+[![React Router](https://img.shields.io/badge/React%20Router-v7-blueviolet)](https://reactrouter.com/)
+[![TanStack Query](https://img.shields.io/badge/TanStack%20Query-4.x-ff69b4)](https://tanstack.com/query)
+[![SweetAlert2](https://img.shields.io/badge/SweetAlert2-11.x-ffb347)](https://sweetalert2.github.io/)
+[![React Toastify](https://img.shields.io/badge/React%20Toastify-9.x-ff9800)](https://fkhadra.github.io/react-toastify/)
 
-![React](https://img.shields.io/badge/React-19-blue)
-![Vite](https://img.shields.io/badge/Vite-6.3-brightgreen)
-![Tailwind](https://img.shields.io/badge/Tailwind-4.1-purple)
+---
+
+## 🌐 Live Demo
+
+- **Client:** [https://secure-nest-client.vercel.app/](https://secure-nest-client.vercel.app/)
+- **Server:** [https://secure-nest-server.vercel.app/](https://secure-nest-server.vercel.app/)
+
+---
 
 ## ✨ Features
 
-- ⚡ Vite for lightning-fast builds
-- 🎨 Tailwind CSS 4 + React 19
-- 🔥 Firebase auth/database ready
-- 🛣️ React Router v7
-- 🧹 ESLint + Prettier
-- 📱 Fully responsive
-- 🚀 Production-optimized
+- 🔒 Secure authentication (Firebase)
+- 🏠 Home, policy, agent, and blog pages
+- 🧑‍💼 Role-based dashboards (Admin, Agent, Customer)
+- 📄 Policy application & claim management
+- 💬 Blog system for agents/admins
+- 📊 Real-time data with React Query
+- 🌙 Light/dark mode support
+- 📱 Fully responsive & mobile-friendly
+- 📨 Newsletter subscription
 
 ---
 
 ## 🧰 Installation & Setup
 
 ```bash
-git clone https://github.com/your-username/jhinku-react.git
-cd jhinku-react
+git clone https://github.com/your-username/secure-nest-client.git
+cd secure-nest-client
 yarn
 yarn run dev
 ```
@@ -33,67 +47,50 @@ Runs app at `http://localhost:5173`
 
 ## 🔥 Firebase Setup
 
-Follow these steps to integrate Firebase:
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Create a project and add a Web App
+3. Copy your Firebase config
+4. Create a `.env` file in your project root:
 
-1. Go to https://console.firebase.google.com/
-2. Create a project
-3. Add a Web App and get your Firebase config
-4. Create a `.env` file in your project root with the following:
+    ```
+    VITE_FIREBASE_API_KEY=your_api_key
+    VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+    VITE_FIREBASE_PROJECT_ID=your_project_id
+    VITE_FIREBASE_STORAGE_BUCKET=your_bucket
+    VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+    VITE_FIREBASE_APP_ID=your_app_id
+    ```
 
-```
-VITE_FIREBASE_API_KEY=your_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_bucket
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-VITE_FIREBASE_APP_ID=your_app_id
-```
-
-5. Create `src/firebase.js` with this content:
-
-```js
-/**
- * 🔧 Firebase Setup Instructions (Vite + React)
- *
- * 1. Go to https://console.firebase.google.com/
- * 2. Create a new project.
- * 3. Add a Web app and copy the config.
- * 4. Create a `.env` file in your project root and add:
- *
- * VITE_FIREBASE_API_KEY=your_api_key
- * VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
- * VITE_FIREBASE_PROJECT_ID=your_project_id
- * VITE_FIREBASE_STORAGE_BUCKET=your_bucket
- * VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
- * VITE_FIREBASE_APP_ID=your_app_id
- *
- * 5. Add this file (firebase.js) to your `src` folder.
- *
- */
-
-import { getAuth } from "@firebase/auth";
-import { initializeApp } from "firebase/app";
-
-const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-};
-
-const app = initializeApp(firebaseConfig);
-export default app;
-export const auth = getAuth(app);
-```
+5. See [`src/firebase/firebase.js`](src/firebase/firebase.js) for integration.
 
 ---
 
-## 📦 Dependencies
+## 🛠️ Technologies Used
 
-react, react-dom, vite, tailwindcss, firebase, react-router, react-toastify, sweetalert2
+[![React](https://img.shields.io/badge/React-19-blue)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-6.3-brightgreen)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.1-teal)](https://tailwindcss.com/)
+[![Firebase](https://img.shields.io/badge/Firebase-Auth%2FDB-orange)](https://firebase.google.com/)
+[![React Router](https://img.shields.io/badge/React%20Router-v7-blueviolet)](https://reactrouter.com/)
+[![TanStack Query](https://img.shields.io/badge/TanStack%20Query-4.x-ff69b4)](https://tanstack.com/query)
+[![SweetAlert2](https://img.shields.io/badge/SweetAlert2-11.x-ffb347)](https://sweetalert2.github.io/)
+[![React Toastify](https://img.shields.io/badge/React%20Toastify-9.x-ff9800)](https://fkhadra.github.io/react-toastify/)
 
-## 👤 Author
+---
 
-Made with ❤️ by <a href="https://github.com/abdullahalsuad" target="_blank">Jhinku Suad</a>
+## 📁 Project Structure
+
+```
+src/
+  components/
+  context/
+  dashboard/
+  firebase/
+  hooks/
+  pages/
+  routes/
+  utils/
+public/
+```
+
+---
