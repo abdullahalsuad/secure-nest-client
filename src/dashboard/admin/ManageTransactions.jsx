@@ -2,6 +2,13 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
+const gradientClasses = {
+  pink: "from-pink-500 to-pink-700",
+  purple: "from-purple-500 to-purple-700",
+  blue: "from-blue-500 to-blue-700",
+  teal: "from-teal-500 to-teal-700",
+};
+
 const ManageTransactions = () => {
   const axiosSecure = useAxiosSecure();
 
@@ -27,7 +34,7 @@ const ManageTransactions = () => {
     queryKey: ["income-stats"],
     queryFn: async () => {
       const res = await axiosSecure.get("/income-stats");
-      return res.data.data; // Because backend wraps under { success, data }
+      return res.data.data;
     },
   });
 
@@ -38,6 +45,7 @@ const ManageTransactions = () => {
   return (
     <div className="p-6 space-y-6 min-h-screen text-gray-900 dark:text-gray-100 font-inter">
       <title>Manage Transactions</title>
+
       {/* Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <SummaryCard
@@ -116,15 +124,19 @@ const ManageTransactions = () => {
   );
 };
 
-const SummaryCard = ({ label, value, from }) => (
-  <div
-    className={`bg-gradient-to-r from-${from}-500 to-${from}-700 text-white px-6 py-4 rounded-lg shadow-md`}
-  >
-    <p className="text-sm uppercase tracking-wide font-semibold">{label}</p>
-    <span className="text-2xl font-bold mt-1 block">
-      ${value?.toFixed(2) || "0.00"}
-    </span>
-  </div>
-);
+const SummaryCard = ({ label, value, from }) => {
+  const gradientClass = gradientClasses[from] || "from-gray-500 to-gray-700";
+
+  return (
+    <div
+      className={`bg-gradient-to-r ${gradientClass} text-white px-6 py-4 rounded-lg shadow-md`}
+    >
+      <p className="text-sm uppercase tracking-wide font-semibold">{label}</p>
+      <span className="text-2xl font-bold mt-1 block">
+        ${value?.toFixed(2) || "0.00"}
+      </span>
+    </div>
+  );
+};
 
 export default ManageTransactions;
