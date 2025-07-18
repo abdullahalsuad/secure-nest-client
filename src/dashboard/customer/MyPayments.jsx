@@ -41,6 +41,13 @@ const MyPayments = () => {
 
   return (
     <div className="p-6 space-y-6 min-h-screen">
+      <title>My Payments</title>
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+          My y Payments
+        </h2>
+      </div>
+      {/* content */}
       <div className="rounded-md shadow-lg overflow-hidden">
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-800 shadow-lg">
           <thead className="bg-gray-900 dark:bg-gray-700">

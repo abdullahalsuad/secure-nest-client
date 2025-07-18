@@ -57,6 +57,7 @@ const ApplicationPage = () => {
 
   return (
     <div className="min-h-screen  text-gray-900 dark:text-white p-6 flex justify-center items-center mt-20 mb-20">
+      <title>Apply form</title>
       <ApplicationForm
         policeId={policeId}
         register={register}

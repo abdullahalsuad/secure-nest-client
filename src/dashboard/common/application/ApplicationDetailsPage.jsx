@@ -48,6 +48,7 @@ const ApplicationDetailsPage = () => {
 
   return (
     <div className="min-h-screen  py-12 px-4 sm:px-6 lg:px-8">
+      <title>{application?.fullName}</title>
       <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden">
         {/* Header */}
         <div className="bg-gradient-to-r from-teal-600 to-indigo-600 p-6 text-white">

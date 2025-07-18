@@ -79,6 +79,7 @@ const PolicyClearance = () => {
 
   return (
     <div className="p-6 space-y-6 min-h-screen">
+      <title>Policy clearance</title>
       <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
         Claims List
       </h2>

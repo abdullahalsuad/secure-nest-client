@@ -50,6 +50,8 @@ const AssignedCustomers = () => {
 
   return (
     <div className="p-6 space-y-6 min-h-screen ">
+      <title>Assigned Applications</title>
+
       <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
         Your Assigned Applications
       </h2>

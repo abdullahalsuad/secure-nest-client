@@ -77,6 +77,7 @@ const ManagePolicies = () => {
 
   return (
     <div className="p-6 space-y-6">
+      <title>Manage Policies</title>
       {/* Header & Add Button */}
       <div className="flex justify-end mt-6">
         <button

@@ -48,6 +48,11 @@ const MyBlogs = () => {
 
   return (
     <div className="p-6 space-y-6 min-h-screen">
+      <title>My Blogs</title>
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
+        My Blogs
+      </h2>
+      
       <div className="overflow-x-auto shadow-md rounded-md">
         <table className="min-w-full bg-white dark:bg-gray-800">
           <thead className="bg-gray-900 dark:bg-gray-700">

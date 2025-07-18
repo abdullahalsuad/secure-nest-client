@@ -47,6 +47,7 @@ const ManageBlogs = () => {
 
   return (
     <div className="p-6 space-y-6 min-h-screen">
+      <title>Manage Blogs</title>
       <div className="rounded-md shadow-lg overflow-hidden">
         <table className="min-w-full bg-white dark:bg-gray-800 shadow-lg">
           <thead className="bg-gray-900 dark:bg-gray-700">

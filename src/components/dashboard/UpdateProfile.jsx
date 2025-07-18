@@ -106,6 +106,7 @@ const UpdateProfile = () => {
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 flex items-start justify-center">
+      <title>Profile</title>
       <div className="max-w-4xl w-full bg-white/80 dark:bg-gray-900 backdrop-blur-lg rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-300 transform">
         <div className="relative md:w-full bg-gradient-to-br from-teal-300 to-teal-600 text-white p-8 md:p-10 flex flex-col items-center justify-center text-center">
           <div className="relative z-10 flex flex-col items-center">

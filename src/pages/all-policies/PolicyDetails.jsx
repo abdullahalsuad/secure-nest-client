@@ -46,6 +46,7 @@ const PolicyDetails = () => {
   return (
     <div className="min-h-screen  py-12 mt-10 mb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <title>{police.title}</title>
         <div className="my-10">
           <Link
             to={"/all-policies"}

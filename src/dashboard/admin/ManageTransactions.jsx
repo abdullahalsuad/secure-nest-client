@@ -37,6 +37,7 @@ const ManageTransactions = () => {
 
   return (
     <div className="p-6 space-y-6 min-h-screen text-gray-900 dark:text-gray-100 font-inter">
+      <title>Manage Transactions</title>
       {/* Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <SummaryCard

@@ -49,6 +49,7 @@ const BlogPage = () => {
 
   return (
     <section className="min-h-screen  py-16 px-4 my-20">
+      <title>Blogs</title>
       <div className="max-w-7xl mx-auto">
         {/* heading */}
         <div className="text-center mb-12">

@@ -61,6 +61,7 @@ const AdminOverview = () => {
 
   return (
     <div className="p-6 space-y-6">
+      <title>Admin dashboard</title>
       <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
         Admin Dashboard
       </h1>

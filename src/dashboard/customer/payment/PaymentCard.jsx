@@ -26,6 +26,7 @@ const PaymentCard = () => {
 
   return (
     <>
+      <title>Payment Card</title>
       <Elements stripe={stripePromise}>
         <PaymentForm police={police} applicationId={applicationId} />
       </Elements>

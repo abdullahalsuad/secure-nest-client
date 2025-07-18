@@ -46,6 +46,7 @@ const AgentsPage = () => {
 
   return (
     <section className="min-h-screen  py-20 my-20">
+      <title>Agents</title>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* heading */}
         <div className="text-center mb-12">

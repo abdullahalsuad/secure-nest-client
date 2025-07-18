@@ -95,6 +95,7 @@ const AllApplications = () => {
 
   return (
     <div className="p-6 space-y-6 min-h-screen">
+      <title>Applications</title>
       <div className="rounded-md shadow-lg overflow-hidden">
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-800 shadow-lg">
           <thead className="bg-gray-900 dark:bg-gray-700">

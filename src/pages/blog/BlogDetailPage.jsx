@@ -44,6 +44,7 @@ const BlogDetailPage = () => {
 
   return (
     <section className="py-12  my-20">
+      <title>{blog.title}</title>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-700 shadow-md border border-gray-100 dark:border-0 p-4 rounded-xl">
         {/* Cover Image */}
         <div className="rounded-xl overflow-hidden shadow-lg mb-8">
